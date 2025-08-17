@@ -36,4 +36,4 @@ dependencies:
     - rdkit-pypi==2023.9.5
     - biopython==1.83
     - wandb==0.16.3
-    # -e ./torchdrug-modified  # Add this AFTER manually installing your vendored copy
+    -e ./torchdrug-modified  # Add this AFTER manually installing your vendored copy
