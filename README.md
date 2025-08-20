@@ -22,7 +22,6 @@ conda activate gearnet
 
 Run the protein classification training with:
 
-```bash
 python script.py \
     --pdb_folder <path_to_membrane_proteins> \
     --soluble_folder <path_to_soluble_proteins> \
