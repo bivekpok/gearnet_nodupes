@@ -17,3 +17,15 @@ git clone https://github.com/bivekpok/gearnet_nodupes
 cd gearnet_nodupes
 conda env create -f environment.yml  # Creates 'gearnet' environment
 conda activate gearnet
+
+### ⚡ Usage
+
+Run the protein classification training with:
+
+```bash
+python script.py \
+    --pdb_folder <path_to_membrane_proteins> \
+    --soluble_folder <path_to_soluble_proteins> \
+    --csv_path <path_to_metadata_csv> \
+    --output_dir <path_for_results> \
+    [--num_epochs 2500]
