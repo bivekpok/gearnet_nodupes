@@ -4,7 +4,7 @@ Based on the TorchDrug library:
 Zhu, Z., Shi, C., Zhang, P., Liu, S., Xu, M., Yuan, X., ... & Tang, J. (2022). TorchDrug: A powerful and flexible machine learning platform for drug discovery. Journal of Machine Learning Research.
 
 
-# GPSforTMDs: Membrane Protein Localization Prediction
+# GPSforTMDs: Membrane Protein Localization Prediction (custom Torchdrug + Gearnet)
 📝 License
 This project is licensed under the Apache License 2.0 - see the LICENSE file for details.
 
@@ -50,6 +50,45 @@ python train.py \
     [--num_epochs 2500]
 
 
+
+## 📚 Citation
+
+If you use this codebase in your research, please cite the following papers:
+
+```bibtex
+@inproceedings{zhang2022protein,
+  title={Protein representation learning by geometric structure pretraining},
+  author={Zhang, Zuobai and Xu, Minghao and Jamasb, Arian and Chenthamarakshan, Vijil and Lozano, Aurelie and Das, Payel and Tang, Jian},
+  booktitle={International Conference on Learning Representations},
+  year={2023}
+}
+bibtex
+@article{zhang2023enhancing,
+  title={A Systematic Study of Joint Representation Learning on Protein Sequences and Structures},
+  author={Zhang, Zuobai and Wang, Chuanrui and Xu, Minghao and Chenthamarakshan, Vijil and Lozano, Aurelie and Das, Payel and Tang, Jian},
+  journal={arXiv preprint arXiv:2303.06275},
+  year={2023}
+}
+bibtex
+@article{pokhrel2024gpsfortmds,
+  title={GPSforTMDs: Predicting Membrane Protein Localization by Deep Learning on Structure and Chemistry},
+  author={Pokhrel, Bivek and Munley, Christian and Lyman, Edward and Pedraza, Miguel},
+  journal={Nature Communications},
+  year={2024},
+  publisher={Nature Publishing Group}
+}
+Also cite the original TorchDrug paper:
+
+bibtex
+@article{zhu2022torchdrug,
+  title={TorchDrug: A powerful and flexible machine learning platform for drug discovery},
+  author={Zhu, Zhaocheng and Shi, Chence and Zhang, Peifa and Liu, Shengchao and Xu, Mai and Yuan, Xinyu and Wang, Jiacheng and Zhang, Biao and Liu, Jie and Luo, Ying and others},
+  journal={Journal of Machine Learning Research},
+  volume={23},
+  number={1},
+  pages={1--8},
+  year={2022}
+}
 
 # GEARNET with Custom TorchDrug
 
