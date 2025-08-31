@@ -43,16 +43,19 @@ conda activate gearnet
 ```
 
 
- ## ⚡️ Usage
-Argument	Description	Default
---pdb_folder	Path to membrane protein PDB files	Required
---soluble_folder	Path to soluble protein PDB files	Required
---csv_path	Path to metadata CSV with localization labels	Required
---output_dir	Directory to save training results	Required
---num_epochs	Number of training epochs	2500
---batch_size	Training batch size	32
---learning_rate	Initial learning rate	1e-4
---gpus	GPU IDs to use (comma-separated)	0
+## ⚡️ Usage
+
+| Argument        | Description                               | Default   |
+|-----------------|-------------------------------------------|-----------|
+| `--pdb_folder`  | Path to membrane protein PDB files        | Required  |
+| `--soluble_folder` | Path to soluble protein PDB files      | Required  |
+| `--csv_path`    | Path to metadata CSV with localization labels | Required |
+| `--output_dir`  | Directory to save training results        | Required  |
+| `--num_epochs`  | Number of training epochs                 | 2500      |
+| `--batch_size`  | Training batch size                       | 32        |
+| `--learning_rate` | Initial learning rate                   | 1e-4      |
+| `--gpus`        | GPU IDs to use (comma-separated)          | 0         |
+
 
 python script.py \
     --pdb_folder <path_to_membrane_proteins> \
