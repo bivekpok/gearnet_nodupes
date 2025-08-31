@@ -80,14 +80,7 @@ bibtex
   journal={arXiv preprint arXiv:2303.06275},
   year={2023}
 }
-bibtex
-@article{pokhrel2024gpsfortmds,
-  title={GPSforTMDs: Predicting Membrane Protein Localization by Deep Learning on Structure and Chemistry},
-  author={Pokhrel, Bivek and Munley, Christian and Lyman, Edward and Pedraza, Miguel},
-  journal={Nature Communications},
-  year={2024},
-  publisher={Nature Publishing Group}
-}
+
 Also cite the original TorchDrug paper:
 
 bibtex
@@ -100,6 +93,13 @@ bibtex
   pages={1--8},
   year={2022}
 }
-
+bibtex
+@article{pokhrel2024gpsfortmds,
+  title={GPSforTMDs: Predicting Membrane Protein Localization by Deep Learning on Structure and Chemistry},
+  author={Pokhrel, Bivek and Munley, Christian and Lyman, Edward and Pedraza, Miguel},
+  journal={Nature Communications},
+  year={2024},
+  publisher={Nature Publishing Group}
+}
 
 
