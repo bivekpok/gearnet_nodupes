@@ -9,7 +9,7 @@ Predicting membrane protein localization using graph neural networks on protein 
 
 **Link to project:** https://github.com/bivekpok/gearnet_nodupes
 
-![GPSforTMDs Architecture](model_archi2.pdf)
+![GPSforTMDs Architecture](https://github.com/bivekpok/gearnet_nodupes/blob/master/model_archi2.pdf)
 
 ## How It's Made:
 
