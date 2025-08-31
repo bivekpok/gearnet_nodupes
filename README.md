@@ -39,7 +39,8 @@ This project implements a modified GEARNET architecture built on the TorchDrug f
 git clone https://github.com/bivekpok/gearnet_nodupes
 cd gearnet_nodupes
 conda env create -f environment.yml  # Creates 'gearnet' environment
-conda activate gearnet ```
+conda activate gearnet
+```
 
 
  ## ⚡️ Usage
