@@ -6,34 +6,34 @@ channels:
   - defaults
 dependencies:
   # Core Python
-  - python=3.10.13  # Pinned for reproducibility
+  - python=3.10.13
   - pip=23.3.1
-  
+
   # PyTorch ecosystem
   - pytorch=2.2.2
   - torchvision=0.17.2
   - torchaudio=2.2.2
-  - pytorch-cuda=12.1  # Must match cluster CUDA version
-  
+  - pytorch-cuda=12.1
+
   # Scientific computing
   - numpy=1.26.4
   - scipy=1.13.0
   - scikit-learn=1.4.0
-  
+
   # Data handling
   - pandas=2.2.1
   - networkx=3.2.1
-  
+
   # Visualization
   - matplotlib=3.8.3
-  
+
   # Utilities
   - tqdm=4.66.2
-  - jupyter=1.0.0  # Optional but recommended
-  
+  - jupyter=1.0.0
+
   # Pip packages
   - pip:
-    - rdkit-pypi==2023.9.5
-    - biopython==1.83
-    - wandb==0.16.3
-    - "-e ./torchdrug-modified"  # Editable local install
+      - rdkit-pypi==2023.9.5
+      - biopython==1.83
+      - wandb==0.16.3
+      - "-e ./torchdrug-modified"
