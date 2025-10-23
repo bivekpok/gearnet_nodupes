@@ -227,7 +227,7 @@ def initialize_model(num_classes):
         batch_norm=True,
         concat_hidden=True,  # Use all layer outputs
         short_cut=True,
-        readout="attention"  # Try attention readout
+        readout="sum"  # Try attention readout
     )
     
     # Enhanced graph construction
