@@ -13,7 +13,7 @@ Predicting membrane protein localization using graph neural networks on protein 
 
 ## 📥 Download Dataset & Models
 
-Download the complete dataset and pre-trained models (264MB):
+Download the complete dataset and pre-trained models weights (264MB):
 
 ### Quick Download:
 ```bash
@@ -24,6 +24,35 @@ tar -xzf membrane-protein-data.tar.gz
 
 # Or download manually from Google Drive:
 # [Download Dataset](https://drive.google.com/drive/u/0/folders/1V_GB-p5uxwaZtcGHeznujBMOyNMxVdbT)
+
+membrane-protein-data/
+├── 📂 pdb_m15_ac/                 # Membrane Protein Structures
+│   ├── 1a0s                   
+│   ├── 2knc                   
+│   └── ... (1,500+ PDB files)
+├── 📂 watersoluble_proteins_ac/   # Soluble Protein Structures
+│   ├── pdb1a80                   
+│   ├── pdb1g4p                   
+│   ├── pdb1p4c                  
+│   └── ... (800+ PDB files)
+├── 📄 final_pdb_csv2.csv          # Metadata & Localization Labels
+│   - Columns: UniProt ID, PDB ID, pdbid, membrane_name_cache
+│   - Sample data:
+│       P0A910, PDB IDs: 1qjp, 1qjp, Gram-neg. outer
+│       P0A917, PDB IDs: 1qj8, 1qj8, Gram-neg. outer
+│   - Localizations: Gram-neg. outer, Plasma membrane, Mitochondrial, etc.
+│   - 13+ membrane environment classes
+└── 📂 results/                    # Pre-trained GearNet Models
+    ├── 🎯 nodupes_trim_best_sol2_1.pth  # Fold 1 (Best validation)
+    ├── 🎯 nodupes_trim_best_sol2_2.pth  # Fold 2 (Best validation)
+    ├── 🎯 nodupes_trim_best_sol2_3.pth  # Fold 3 (Best validation)
+    ├── 🎯 nodupes_trim_best_sol2_4.pth  # Fold 4 (Best validation)
+    ├── 🎯 nodupes_trim_best_sol2_5.pth  # Fold 5 (Best validation)
+    ├── 📈 nodupes_trim_last_sol2_1.pth  # Fold 1 (Final epoch)
+    ├── 📈 nodupes_trim_last_sol2_2.pth  # Fold 2 (Final epoch)
+    ├── 📈 nodupes_trim_last_sol2_3.pth  # Fold 3 (Final epoch)
+    ├── 📈 nodupes_trim_last_sol2_4.pth  # Fold 4 (Final epoch)
+    └── 📈 nodupes_trim_last_sol2_5.pth  # Fold 5 (Final epoch)
 
 
 ## How It's Made:
