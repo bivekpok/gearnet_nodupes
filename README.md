@@ -11,6 +11,21 @@ Predicting membrane protein localization using graph neural networks on protein 
 
 ![GPSforTMDs Architecture](https://github.com/bivekpok/gearnet_nodupes/blob/master/model_archi2-1.png)
 
+## 📥 Download Dataset & Models
+
+Download the complete dataset and pre-trained models (264MB):
+
+### Quick Download:
+```bash
+# Using gdown (recommended)
+pip install gdown
+gdown --id 1V_GB-p5uxwaZtcGHeznujBMOyNMxVdbT
+tar -xzf membrane-protein-data.tar.gz
+
+# Or download manually from Google Drive:
+# [Download Dataset](https://drive.google.com/drive/u/0/folders/1V_GB-p5uxwaZtcGHeznujBMOyNMxVdbT)
+
+
 ## How It's Made:
 
 **Tech used:** Python, PyTorch, TorchDrug, Graph Neural Networks, CUDA, BioPython
