@@ -23,7 +23,7 @@ gdown --id 1V_GB-p5uxwaZtcGHeznujBMOyNMxVdbT
 tar -xzf membrane-protein-data.tar.gz
 
 # Or download manually from Google Drive:
-# [Download Dataset](https://drive.google.com/drive/u/0/folders/1V_GB-p5uxwaZtcGHeznujBMOyNMxVdbT)
+[Download Dataset (264MB)](https://drive.google.com/drive/u/0/folders/1V__GB-p5uxwaZtcGHeznujBMOyNMxVdbT)
 
 membrane-protein-data/
 ├── 📂 pdb_m15_ac/                 # Membrane Protein Structures
