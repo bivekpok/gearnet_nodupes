@@ -97,13 +97,43 @@ conda activate gearnet
 | `--gpus`        | GPU IDs to use (comma-separated)          | 0         |
 
 
-python script.py \
-    --pdb_folder <path_to_membrane_proteins> \
-    --soluble_folder <path_to_soluble_proteins> \
-    --csv_path <path_to_metadata_csv> \
-    --output_dir <path_for_results> \
-    [--num_epochs 2500]
+## How to Run
 
+All paths and flags are provided via command-line arguments.
+
+### 1. Training
+
+To train a new model from scratch for 5 folds:
+
+```bash
+python protein_classification_reproducible.py \
+    --pdb_folder /path/to/your/membrane_pdbs \
+    --soluble_folder_ac /path/to/your/soluble_pdbs \
+    --csv_path /path/to/your/metadata.csv \
+    --output_dir ./models \
+    --num_epochs 100 \
+    --training
+```
+-   `--training`: This flag tells the script to run in training mode.
+-   `--output_dir`: Specifies where to save the trained model weights (`.pth` files).
+
+### 2. Evaluation
+
+To evaluate existing pre-trained models:
+
+```bash
+python protein_classification_reproducible.py \
+    --pdb_folder /path/to/your/membrane_pdbs \
+    --soluble_folder_ac /path/to/your/soluble_pdbs \
+    --csv_path /path/to/your/metadata.csv \
+    --output_dir ./results \
+    --model_path_folder /path/to/your/pretrained_models \
+    --best_or_last best
+```
+-   **Omit** the `--training` flag to run in evaluation mode.
+-   `--model_path_folder`: This is **required** for evaluation. It's the directory containing your pre-trained weights (e.g., `nodupes_trim_best_sol2_1.pth`, `nodupes_trim_best_sol2_2.pth`, etc.).
+-   `--best_or_last`: Choose whether to load the `best` or `last` epoch weights.
+-   `--output_dir`: In evaluation mode, this directory isn't used for saving models but is still a required argument. You can point it to a general results folder.
 
 ### 📚 Citation
 
