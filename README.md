@@ -17,12 +17,8 @@ Download the complete dataset and pre-trained models weights (264MB):
 
 ### Quick Download:
 ```bash
-# Using gdown (recommended)
-pip install gdown
-gdown --id 1V_GB-p5uxwaZtcGHeznujBMOyNMxVdbT
-tar -xzf membrane-protein-data.tar.gz
 
-# Or download manually from Google Drive:
+# Download manually from Google Drive:
 [Download Dataset (264MB)](https://drive.google.com/drive/u/0/folders/1V_GB-p5uxwaZtcGHeznujBMOyNMxVdbT)
 
 membrane-protein-data/
@@ -42,17 +38,17 @@ membrane-protein-data/
 │       P0A917, PDB IDs: 1qj8, 1qj8, Gram-neg. outer
 │   - Localizations: Gram-neg. outer, Plasma membrane, Mitochondrial, etc.
 │   - 13+ membrane environment classes
-└── 📂 results/                    # Pre-trained GearNet Models
-    ├── 🎯 nodupes_trim_best_sol2_1.pth  # Fold 1 (Best validation)
-    ├── 🎯 nodupes_trim_best_sol2_2.pth  # Fold 2 (Best validation)
-    ├── 🎯 nodupes_trim_best_sol2_3.pth  # Fold 3 (Best validation)
-    ├── 🎯 nodupes_trim_best_sol2_4.pth  # Fold 4 (Best validation)
-    ├── 🎯 nodupes_trim_best_sol2_5.pth  # Fold 5 (Best validation)
-    ├── 📈 nodupes_trim_last_sol2_1.pth  # Fold 1 (Final epoch)
-    ├── 📈 nodupes_trim_last_sol2_2.pth  # Fold 2 (Final epoch)
-    ├── 📈 nodupes_trim_last_sol2_3.pth  # Fold 3 (Final epoch)
-    ├── 📈 nodupes_trim_last_sol2_4.pth  # Fold 4 (Final epoch)
-    └── 📈 nodupes_trim_last_sol2_5.pth  # Fold 5 (Final epoch)
+└── 📂 weights/                    # Pre-trained GearNet Models
+    ├── 🎯 best_1.pth  # Fold 1 (Best validation)
+    ├── 🎯 best_2.pth  # Fold 2 (Best validation)
+    ├── 🎯 best_3.pth  # Fold 3 (Best validation)
+    ├── 🎯 best_4.pth  # Fold 4 (Best validation)
+    ├── 🎯 best_5.pth  # Fold 5 (Best validation)
+    ├── 📈 last_1.pth  # Fold 1 (Final epoch)
+    ├── 📈 last_2.pth  # Fold 2 (Final epoch)
+    ├── 📈 last_3.pth  # Fold 3 (Final epoch)
+    ├── 📈 last_4.pth  # Fold 4 (Final epoch)
+    └── 📈 last_5.pth  # Fold 5 (Final epoch)
 
 
 ## How It's Made:
