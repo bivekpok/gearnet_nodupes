@@ -2,6 +2,18 @@
 
 Training / split utilities live under `github_uploads/`.
 
+## SLURM: production CV (`gnet_all_prod.sh`)
+
+`github_uploads/gnet_all_prod.sh` is the batch script for GearNet production cross-validation
+(Delta-style `#SBATCH` directives, conda env, W&B temp dirs). **Edit paths** (logs, working dir,
+conda) if you run on another cluster.
+
+Submit from the directory where your training code expects paths, e.g.:
+
+```bash
+sbatch github_uploads/gnet_all_prod.sh
+```
+
 ## Foldseek + membrane deduplication
 
 `filter_foldseek_redundant_by_membrane.py` implements the same logic as the Colab snippet:
