@@ -4,6 +4,3 @@ __pycache__/
 *.egg-info/
 lib/
 include/
-
-# Local path overrides (copy from paths.env.example)
-gpstmd/github_uploads/paths.env

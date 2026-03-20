@@ -2,8 +2,6 @@
 
 Training / split utilities live under `github_uploads/`.
 
-**Portable paths:** see [`github_uploads/PATHS.md`](github_uploads/PATHS.md) and `github_uploads/paths.env.example`.
-
 ## SLURM: production CV (`gnet_all_prod.sh`)
 
 `github_uploads/gnet_all_prod.sh` is the batch script for GearNet production cross-validation
@@ -34,6 +32,5 @@ Optional: `--pdb-column`, `--label-column` if your table uses different names.
 
 ---
 
-Example split output directory (set `WORK_COVER` / `--output-root` on your machine):
-
-`$WORK_COVER/production_splitsv2`
+Local reference path (splits):  
+`/work/hdd/bdja/bpokhrel/new_gearnet/foldseek_train/whole_test_cover/production_splitsv2`
