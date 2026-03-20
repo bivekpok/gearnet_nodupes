@@ -1,4 +1,6 @@
+import argparse
 import os
+
 import pandas as pd
 from sklearn.model_selection import StratifiedKFold, StratifiedShuffleSplit, train_test_split
 
@@ -81,8 +83,25 @@ def generate_hybrid_splits(csv_path, output_root, n_outer=6, n_inner_for_tune=3)
             print_split_stats(val_df, f"  Inner 1 VALID SET")
 
 if __name__ == "__main__":
-    
+    parser = argparse.ArgumentParser(
+        description="Generate nested train/val/test splits under output_root (see PATHS.md)."
+    )
+    parser.add_argument(
+        "--csv",
+        required=True,
+        help="Input metadata CSV (e.g. fs_sl_df_noGolgiLysosomeVacuole.csv)",
+    )
+    parser.add_argument(
+        "--output-root",
+        required=True,
+        help="Directory to create (e.g. .../whole_test_cover/production_splitsv2)",
+    )
+    parser.add_argument("--n-outer", type=int, default=6)
+    parser.add_argument("--n-inner-for-tune", type=int, default=3)
+    args = parser.parse_args()
     generate_hybrid_splits(
-        "/work/hdd/bdja/bpokhrel/new_gearnet/foldseek_train/fs_sl_df_noGolgiLysosomeVacuole.csv", 
-        "/work/hdd/bdja/bpokhrel/new_gearnet/foldseek_train/whole_test_cover/production_splitsv2"
+        args.csv,
+        args.output_root,
+        n_outer=args.n_outer,
+        n_inner_for_tune=args.n_inner_for_tune,
     )
