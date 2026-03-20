@@ -44,7 +44,7 @@ cp paths.env.example paths.env
 # Edit paths.env: WORK_COVER, GEARNET_PDB_ROOT, CONDA_SH, CONDA_ENV_GEARNET
 ```
 
-For `gnet_all_prod.sh`, also edit the **`#SBATCH --output` / `--error`** lines so log paths exist on your cluster (Slurm does not expand `$VAR` there).
+For `gnet_all_prod.sh`, SLURM logs are **`logs/production_v2.%j.%N.out`** relative to the directory where you run `sbatch` — run **`mkdir -p logs`** there first, or use **`sbatch -o /abs/path/out.%j -e /abs/path/err.%j ...`**. If the script lives under `github_uploads/` in a clone, set **`WORK_COVER`** in `paths.env` to your real `whole_test_cover` directory.
 
 ---
 

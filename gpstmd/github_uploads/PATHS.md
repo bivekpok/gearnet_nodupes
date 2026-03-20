@@ -38,7 +38,7 @@ set +a
 sbatch gnet_all_prod.sh
 ```
 
-> **SLURM `#SBATCH --output` / `--error`**: Slurm does **not** expand shell variables in those lines. Either edit those two lines to match your `WORK_COVER/logs`, or submit with `sbatch -o ... -e ... gnet_all_prod.sh`.
+> **SLURM `#SBATCH --output` / `--error`**: The script uses paths **relative to your submit cwd** (e.g. `logs/production_v2.%j.%N.out`). Run `mkdir -p logs` in that directory before `sbatch`, or override with `sbatch -o /abs/... -e /abs/... gnet_all_prod.sh`. Slurm does **not** expand `$VAR` inside `#SBATCH` lines.
 
 ## File-by-file
 
