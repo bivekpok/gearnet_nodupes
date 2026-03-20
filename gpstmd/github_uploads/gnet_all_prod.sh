@@ -5,10 +5,13 @@
 # 1) Put this script in your "whole_test_cover" (or any) project directory.
 # 2) Optional: copy paths.env.example -> paths.env next to this script and set
 #    GEARNET_PDB_ROOT, CONDA_SH, CONDA_ENV_GEARNET, etc.
-# 3) Submit FROM the directory that should be WORK_COVER (usually this folder):
+# 3) Submit FROM the directory used for SLURM relative log paths (usually whole_test_cover):
 #      mkdir -p logs && sbatch gnet_all_prod.sh
+#    If this file lives under github_uploads/, from parent dir:
+#      mkdir -p logs && sbatch github_uploads/gnet_all_prod.sh
 #    Or override SLURM logs (Slurm does not expand $vars in #SBATCH):
 #      sbatch -o /your/logs/out.%j -e /your/logs/err.%j gnet_all_prod.sh
+#    Git clone only: set WORK_COVER in paths.env (parent of github_uploads may not hold splits).
 # =============================================================================
 #SBATCH --job-name="gnet_production_cv"
 # Relative to your submission cwd — use "mkdir -p logs" before sbatch, or pass -o/-e.
@@ -35,10 +38,20 @@ if [[ -f "${_SCRIPT_DIR}/paths.env" ]]; then
   set -a && source "${_SCRIPT_DIR}/paths.env" && set +a
 fi
 
-# Default WORK_COVER = directory containing this script.
-# If you keep this file under github_uploads/ in a clone, set WORK_COVER in paths.env
-# to your real whole_test_cover dir (where production_splitsv2/ lives).
-: "${WORK_COVER:=${_SCRIPT_DIR}}"
+# WORK_COVER = dir containing production_splitsv2/ (runtime cd target).
+if [[ -z "${WORK_COVER}" ]]; then
+  if [[ "$(basename "${_SCRIPT_DIR}")" == "github_uploads" ]]; then
+    _PARENT="$(cd "${_SCRIPT_DIR}/.." && pwd)"
+    if [[ -d "${_PARENT}/production_splitsv2" ]]; then
+      WORK_COVER="${_PARENT}"
+    else
+      echo "ERROR: ../production_splitsv2 not found from github_uploads/. Set WORK_COVER in paths.env." >&2
+      exit 1
+    fi
+  else
+    WORK_COVER="${_SCRIPT_DIR}"
+  fi
+fi
 # Override in paths.env if your PDBs live elsewhere (example Delta path kept as fallback)
 : "${GEARNET_PDB_ROOT:=/work/hdd/bdja/bpokhrel/gearnet_files}"
 : "${CONDA_SH:=${HOME}/miniconda3/etc/profile.d/conda.sh}"
