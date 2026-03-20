@@ -35,6 +35,7 @@ class PropertyPrediction(tasks.Task, core.Configurable):
         mlp_batch_norm (bool, optional): apply batch normalization in mlp or not
         mlp_dropout (float, optional): dropout in mlp
         graph_construction_model (nn.Module, optional): graph construction model
+        class_weights (list, torch.Tensor, optional): class weights for imbalanced cross-entropy loss.
         verbose (int, optional): output verbose level
     """
 
@@ -43,7 +44,7 @@ class PropertyPrediction(tasks.Task, core.Configurable):
  # fold_idx _to save diffrent fold outputs
     def __init__(self, model, task=(), criterion="mse", metric=("mae", "rmse"), num_mlp_layer=1,
                  normalization=True, num_class=None, mlp_batch_norm=False, mlp_dropout=0,
-                 graph_construction_model=None, verbose=0):
+                 graph_construction_model=None, class_weights=None, verbose=0):
         super(PropertyPrediction, self).__init__()
         self.model = model
         self.task = task
@@ -57,6 +58,7 @@ class PropertyPrediction(tasks.Task, core.Configurable):
         self.mlp_batch_norm = mlp_batch_norm
         self.mlp_dropout = mlp_dropout
         self.graph_construction_model = graph_construction_model
+        self.class_weights = class_weights
         self.verbose = verbose
         self.all_name =[]
         
@@ -71,12 +73,6 @@ class PropertyPrediction(tasks.Task, core.Configurable):
                 continue
             # print(self.task)
             for task in self.task:
-                # print('task')
-                # print(self.task)
-                # print(sample)
-                # print(task)
-                # print(sample[task])
-                # print(sample['name'])
                 if not math.isnan(sample[task]):
 
 
@@ -112,9 +108,6 @@ class PropertyPrediction(tasks.Task, core.Configurable):
         hidden_dims = [self.model.output_dim] * (self.num_mlp_layer - 1)
         self.mlp = layers.MLP(self.model.output_dim, hidden_dims + [sum(self.num_class)],
                             batch_norm=self.mlp_batch_norm, dropout=self.mlp_dropout)
-        # print('Inside the task/proterty_prediction')
-        # num_params_m2 = sum(p.numel() for p in self.mlp.parameters() if p.requires_grad)
-        # print(f'num_params_m2 {num_params_m2}')
 
 
     def forward(self, batch):
@@ -154,65 +147,44 @@ class PropertyPrediction(tasks.Task, core.Configurable):
             elif criterion == "bce":
                 loss = F.binary_cross_entropy_with_logits(pred, target, reduction="none")
             elif criterion == "ce":
-                # loss = F.cross_entropy(pred, target.long().squeeze(-1),reduction="none").unsqueeze(-1)
-                
-                ### A = np.array(list(population_counts.values())), class_weights_new = 1 / (A / np.min(A))
-
-                    
-                # weights = torch.tensor([0.2745098, 0.15217391, 0.01755853, 1., 0.04225352, 0.11731844, ## for the weights decides from the inverse of the population
-                #                0.14285714, 0.61764706, 0.18340611, 0.91304348, 0.91304348,
-                #                0.29370629, 0.76363636, 0.51219512, 0.04097561], device='cuda')
-                 
-                 
-                 
-                ### wj=n_samples / (n_classes * n_samplesj)
-                # weights = torch.tensor([2.7028322440087145, 1.4983091787439613, 0.17288182831661092, 9.846031746031747, 0.41602951039570757, 1.15512104283054, 1.4065759637188209, 
-                #                         6.0813725490196076, 1.8058224163027656,
-                #                         8.989855072463769, 8.989855072463769, 2.891841491841492, 7.518787878787879, 5.043089430894309, 0.4034471544715447], device='cuda')
-                # weights = torch.tensor([2.857609710550887, 1.5841097308488612, 0.18278189202102246, 10.40986394557823, 0.4398534061511929, 1.221268954509178, 1.4871234207968902, 6.429621848739496, 1.9092326887086712,
-                #                         9.504658385093167, 9.504658385093167, 3.0574425574425574, 7.94935064935065, 0.42655052264808363],
-                #         device='cuda')# del vi weights
-                # weights = torch.tensor([3.0542986425339365, 1.6931438127090301, 0.1953627476202727, 11.126373626373626, 
-                #         0.4701284630862096, 1.3053287494628276, 1.5894819466248038, 6.872171945701357, 
-                #         2.0406449445750754, 10.158862876254181, 3.2678859601936523, 8.496503496503497, 
-                #         0.45590994371482174], device='cuda') # del_vi_sec weights
-                # weights = torch.tensor([2.2457627118644066, 1.5773809523809523, 0.23204903677758318, 10.192307692307692, 0.3732394366197183,
-                #                         0.6973684210526315, 1.1228813559322033, 8.28125, 1.6987179487179487, 8.28125, 1.8928571428571428, 6.625], device = 'cuda') ## removedupes
-                weights = torch.tensor([2.72490221642764, 1.913919413919414, 0.281557321837532, 12.366863905325443, 0.4528710725893825, 0.8461538461538461, 
-                                        1.36245110821382, 10.048076923076923, 2.0611439842209074, 10.048076923076923, 2.2967032967032965, 8.038461538461538, 0.32153846153846155], device = 'cuda') ## removedupes + soluble
-                   # remove golgi 
+                if self.class_weights is not None:
+                    # 1. Convert to tensor and move to the correct GPU
+                    if not isinstance(self.class_weights, torch.Tensor):
+                        weight_tensor = torch.tensor(self.class_weights, dtype=torch.float32, device=pred.device)
+                    else:
+                        # If it's already a tensor, just make sure it's on the right GPU
+                        weight_tensor = self.class_weights.to(pred.device)
+                    loss = F.cross_entropy(pred, target.long().squeeze(-1), weight=weight_tensor, reduction="mean").unsqueeze(-1)
+                ### seq_homo_0.3
                 # weights = torch.tensor([
-                #     1.0000,    # Archaebac.
-                #     0.7024,    # Endoplasm. reticulum
-                #     0.1033,    # Eykaryo. plasma
-                #     0.1662,    # Gram-neg. inner
-                #     0.3105,    # Gram-neg. outer
-                #     0.5000,    # Gram-pos. inner
-                #     0.7564,    # Mitochon. inner
-                #     0.8429,    # Thylakoid
-                #     0.1180     # z_soluble
-                # ], device='cuda')
-                
-                loss = F.cross_entropy(pred, target.long().squeeze(-1), weight=weights,reduction="none").unsqueeze(-1)
-                # y = target.long().squeeze(-1)
-                # y = y.cpu()
-                # print('target_np_pp',y)
-                # ynp = y.numpy()
-                # weights = compute_class_weight(class_weight="balanced", classes=np.unique(ynp), y=ynp)
-                # print('weights', weights)
-                # # print
-                # fw = np.zeros(15)
-                # fw[np.unique(ynp)] = weights
-                # print('fw', fw)
-                # loss = F.cross_entropy(pred, target.long().squeeze(-1), weight=torch.tensor(fw, dtype=torch.float).to('cuda'), reduction="none").unsqueeze(-1)
-                
-                ## added focal_loss
+                #                         2.2662,   # Archaebac.
+                #                         1.4066,   # Endoplasm. reticulum
+                #                         0.2549,   # Eykaryo. plasma
+                #                         7.4167,   # Golgi
+                #                         0.3413,   # Gram-neg. inner
+                #                         0.7156,   # Gram-neg. outer
+                #                         0.9378,   # Gram-pos. inner
+                #                         9.0648,   # Lysosome
+                #                         1.5689,   # Mitochon. inner
+                #                         6.2756,   # Mitochon. outer
+                #                         3.2633,   # Thylakoid
+                #                         5.4389    # Vacuole
+                #                     ], device=pred.device) # <-- DYNAMIC DEVICE FIX
+                # weights = weights / weights.mean()
+                ##seq_homo_0.7
+                # weights = torch.tensor([0.6175, 0.4460, 0.0673, 2.4699, 0.1026, 0.2032, 0.2817, 2.4699, 0.4522,
+                #             2.4699, 0.7298, 1.6900], device = pred.device) # already normalized
+                # weights = weights / weights.mean()
+                else: 
+                    print("!!! not using weights for the Loss")
+                    loss = F.cross_entropy(pred, target.long().squeeze(-1), reduction="mean").unsqueeze(-1)
+                # loss = F.cross_entropy(pred, target.long().squeeze(-1), reduction="mean").unsqueeze(-1)
             elif criterion == "focal":  # Implement Focal Loss
                     # Define class weights (inverse class frequency)
-                class_weights = torch.tensor([2.2458, 1.5774, 0.2320, 10.1923, 0.3732,
-                                            0.6974, 1.1229, 8.2813, 1.6987, 8.2813,
-                                            1.8929, 6.625], device='cuda')
-                loss = compute_focal_loss(pred, target, class_weights)
+                if self.class_weights is not None:
+                    loss = compute_focal_loss(pred, target, self.class_weights)
+                else:
+                    loss = compute_focal_loss(pred, target)
             else:
                 raise ValueError("Unknown criterion `%s`" % criterion)
             loss = functional.masked_mean(loss, labeled, dim=0)
@@ -255,27 +227,6 @@ class PropertyPrediction(tasks.Task, core.Configurable):
 
     def evaluate(self, pred, target):
         labeled = ~torch.isnan(target)
-        # base_path = "/ocean/projects/bio230029p/bpokhrel/names"
-        # # print('self.all_name')
-        
-        # file_prefix = "oo1_name"
-        # file_number = 1
-        # while True:
-        #     file_name = f"{file_prefix}{file_number}.npy"
-        #     file_path = os.path.join(base_path, file_name)
-           
-
-            # if not os.path.exists(file_path):
-            #     # Files with these names do not exist, so save the data with these names
-            #     np.save(file_path, self.all_name)
-            #     # np.save(target_file_path, all_target_values)
-            #     break  # Exit the loop
-
-
-            
-            # file_number += 1
-        
-
         metric = {}
         for _metric in self.metric:
             if _metric == "mae":
@@ -291,12 +242,6 @@ class PropertyPrediction(tasks.Task, core.Configurable):
                 # print(target)
                 score = []
                 num_class = 0
-                # correct_predictions = 0
-                # total_predictions = 0
-                # all_pred=[]
-                # all_target=[]
-                # all_pred_values = []
-                # all_target_values = []
                 print(f'self.num_class {self.num_class}')
                 for i, cur_num_class in enumerate(self.num_class):
                     _pred = pred[:, num_class:num_class + cur_num_class]
@@ -304,88 +249,10 @@ class PropertyPrediction(tasks.Task, core.Configurable):
                     _labeled = labeled[:, i]
                     _score = metrics.accuracy(_pred[_labeled], _target[_labeled].long())
                     score.append(_score)
-                    # for CM, total_prediction, total_target
-                    # print(f'_pred[_labeled] {_pred[_labeled]}')
-                    # print(f'_target[_labeled].long(){_target[_labeled].long()}')
-                    # # Append values to lists
-                    # all_pred_values.append(_pred[_labeled])
-                    # all_target_values.append(_target[_labeled].long())
-                    # Move tensors from GPU to CPU and append values to lists
-                    # all_pred_values.append(_pred[_labeled].cpu().detach().numpy()) ## uncommnet for multigpu test
-                    # all_target_values.append(_target[_labeled].long().cpu().detach().numpy())# uncommnet for multigpu test
-
-                    # score.append(_score)  ## uncommnet for multigpu test
                     num_class += cur_num_class ## uncommnet for multigpu test
-                    #  # For confusion matrix
-                    # _pred = _pred[_labeled].argmax(dim=1).cpu().numpy()
-                    # _target = _target[_labeled].long().cpu().numpy()
-                    # all_pred.extend(_pred)
-                    # all_target.extend(_target)
-                    # correct_predictions += (_pred == _target).sum()
-                    # total_predictions += len(_pred)
-                    # print('myaccu')
-                    # print(correct_predictions/total_predictions) ## uncommnet for multigpu test till here
-                # Convert lists to NumPy arrays
-                # all_pred_array = np.concatenate(all_pred_values)
-                # all_target_array = np.concatenate(all_target_values)
+
                 score = torch.stack(score)
-                #my_add
-                # Save the NumPy arrays to files
-                # base_path = "/ocean/projects/bio230029p/bpokhrel/kfold_11_24_023"
-                # file_prefix = "kfold_pred_notrim"
-                # file_number = 1
-##  uncomment till file_name to try multi-gpu
-
-                # Keep incrementing the file number until a non-existing file name is found
-                # while True:
-                #     pred_file_name = f"{file_prefix}{file_number}.npy"
-                #     target_file_name = f"kfold_target_no_trim{file_number}.npy"
-                #     pred_file_path = os.path.join(base_path, pred_file_name)
-                #     target_file_path = os.path.join(base_path, target_file_name)
-
-                #     if not os.path.exists(pred_file_path) and not os.path.exists(target_file_path):
-                #         # Files with these names do not exist, so save the data with these names
-                #         np.save(pred_file_path, all_pred_values)
-                #         np.save(target_file_path, all_target_values)
-                        
-                #         break  # Exit the loop
-
-                #     # Increment the file number for the next iteration
-                #     file_number += 1
-                    
-                    
-                    
-                # np.save(f"/ocean/projects/bio230029p/bpokhrel/kfold_pred{1}.npy", all_pred_values)
-                # np.save(f"/ocean/projects/bio230029p/bpokhrel/kfold_target{1}.npy", all_target_values)
-                # base_path = "/ocean/projects/bio230029p/bpokhrel/names"
-
-                # file_prefix = "oo_name"
-                # file_number = 1
-                # while True:
-                #     file_name = f"{file_prefix}{file_number}.npy"
-                #     file_path = os.path.join(base_path, file_name)
-                #     print('self.all_name')
-                #     print(self.all_name)
-
-                #     if not os.path.exists(file_path):
-                #         # Files with these names do not exist, so save the data with these names
-                #         np.save(file_path, self.all_name)
-                #         # np.save(target_file_path, all_target_values)
-                #         break  # Exit the loop
-
-
-                    
-                #     file_number += 1
-                
-                # all_pred_values=np.array(all_pred_values)
-                # all_target_values=np.array(all_target_values)
-                # cm = confusion_matrix(all_target, all_pred, labels=list(range(23)))
-                # print("Confusion matrix:")
-                # # print(f'all_target: { all_target}')
-                # # print(f' all_pred: {all_pred}')
-                # # print(f'all_pred_values {all_pred_values}')
-                # # print(f'all_target_values {all_target_values}')
-                # print(cm)
+  
                
               
                 
