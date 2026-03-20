@@ -1,0 +1,944 @@
+pdbid,label
+5y83,Gram-neg. inner
+6ebu,Gram-neg. inner
+1wrg,Thylakoid
+7vl9,Eykaryo. plasma
+4gc0,Gram-neg. inner
+4wz7,Mitochon. inner
+3kvn,Gram-neg. outer
+4f4c,Eykaryo. plasma
+2a79,Eykaryo. plasma
+2lnl,Eykaryo. plasma
+1p7b,Gram-neg. inner
+6fvq,Gram-neg. inner
+7o0u,Gram-neg. inner
+5nv9,Gram-neg. inner
+3tds,Gram-pos. inner
+2n7i,Eykaryo. plasma
+6s8h,Gram-neg. inner
+3j5p,Eykaryo. plasma
+6eus,Gram-neg. outer
+5sy1,Eykaryo. plasma
+4ysx,Mitochon. inner
+3vmt,Gram-pos. inner
+5b2g,Eykaryo. plasma
+5o5e,Endoplasm. reticulum
+5lil,Gram-neg. inner
+2lat,Endoplasm. reticulum
+4qnc,Gram-neg. inner
+7s5t,Eykaryo. plasma
+4xtl,Gram-neg. inner
+3aqp,Gram-neg. inner
+5ldv,Gram-neg. outer
+6r6b,Gram-neg. inner
+6z0f,Gram-pos. inner
+5zug,Gram-neg. inner
+4ymu,Gram-pos. inner
+7f6h,Eykaryo. plasma
+6j8e,Eykaryo. plasma
+2k0l,Gram-neg. outer
+2m59,Eykaryo. plasma
+6bfg,Gram-neg. inner
+7ddz,Eykaryo. plasma
+1c17,Gram-neg. inner
+7czl,Thylakoid
+7cfm,Eykaryo. plasma
+6gie,Gram-neg. outer
+4q2e,Gram-neg. inner
+4hkr,Eykaryo. plasma
+6pwc,Eykaryo. plasma
+5u1x,Eykaryo. plasma
+6ksp,Eykaryo. plasma
+6nwd,Gram-neg. inner
+5lcb,Gram-neg. inner
+5tv4,Gram-neg. inner
+2gr7,Gram-neg. outer
+6z5r,Thylakoid
+7cad,Gram-pos. inner
+6wlb,Eykaryo. plasma
+4cg5,Endoplasm. reticulum
+7tyh,Eykaryo. plasma
+6e9c,Gram-neg. inner
+5l22,Gram-neg. inner
+2mts,Endoplasm. reticulum
+7jna,Eykaryo. plasma
+7lep,Eykaryo. plasma
+6rwy,Gram-neg. inner
+6v3f,Endoplasm. reticulum
+7rtu,Eykaryo. plasma
+7jrp,Mitochon. inner
+6ryo,Gram-pos. inner
+6v1y,Eykaryo. plasma
+6wtw,Gram-pos. inner
+7yxa,Eykaryo. plasma
+4aui,Gram-neg. outer
+2mmu,Gram-pos. inner
+6lo8,Mitochon. inner
+7jsj,Eykaryo. plasma
+7cye,Gram-neg. inner
+5gko,Gram-neg. inner
+7met,Gram-neg. inner
+6fuf,Eykaryo. plasma
+6ehb,Gram-neg. outer
+6qph,Thylakoid
+5u70,Eykaryo. plasma
+6ukn,Eykaryo. plasma
+7d3e,Eykaryo. plasma
+5mkk,Gram-neg. inner
+7d61,Eykaryo. plasma
+6wvd,Endoplasm. reticulum
+7fig,Eykaryo. plasma
+6bqr,Eykaryo. plasma
+3beh,Gram-neg. inner
+7d5q,Gram-pos. inner
+7b03,Gram-neg. inner
+7f61,Eykaryo. plasma
+7ck6,Mitochon. outer
+2z5x,Mitochon. outer
+2los,Mitochon. inner
+6iok,Gram-neg. inner
+7dtd,Eykaryo. plasma
+5zov,Gram-neg. inner
+6x6k,Gram-neg. outer
+7czb,Endoplasm. reticulum
+6dnf,Mitochon. inner
+6cse,Archaebac.
+7ari,Gram-neg. inner
+4lep,Gram-neg. inner
+7db6,Eykaryo. plasma
+6cd2,Gram-neg. outer
+5n9y,Gram-neg. inner
+5i6c,Eykaryo. plasma
+6r69,Gram-neg. inner
+7cff,Gram-neg. inner
+7cfs,Eykaryo. plasma
+4pgr,Gram-pos. inner
+7tpg,Gram-neg. inner
+5d92,Gram-pos. inner
+6c70,Eykaryo. plasma
+7myz,Eykaryo. plasma
+1tly,Gram-neg. outer
+2w5j,Thylakoid
+2nwl,Archaebac.
+4bum,Mitochon. outer
+7bp3,Eykaryo. plasma
+5lxg,Eykaryo. plasma
+4r0c,Gram-neg. inner
+7np3,Eykaryo. plasma
+3rce,Gram-neg. inner
+7b0p,Gram-pos. inner
+6wim,Gram-neg. outer
+5eke,Gram-neg. inner
+6l6p,Eykaryo. plasma
+7clv,Mitochon. inner
+5xnl,Thylakoid
+7jro,Mitochon. inner
+5gae,Gram-neg. inner
+5or1,Gram-neg. outer
+4mnd,Archaebac.
+5gjv,Eykaryo. plasma
+4ev6,Archaebac.
+7mbx,Eykaryo. plasma
+6kmx,Thylakoid
+5fq6,Gram-neg. outer
+3tij,Gram-neg. inner
+3b5x,Gram-neg. inner
+5wq7,Gram-neg. outer
+2lzr,Gram-neg. inner
+4k5y,Eykaryo. plasma
+5wln,Gram-neg. inner
+4kpp,Archaebac.
+2mic,Eykaryo. plasma
+4w6v,Gram-neg. inner
+4x5m,Gram-neg. inner
+4hzu,Gram-pos. inner
+3qq2,Gram-neg. outer
+4jq6,Gram-neg. inner
+3am6,Eykaryo. plasma
+6jxr,Eykaryo. plasma
+6ykm,Gram-neg. inner
+4aps,Gram-pos. inner
+3hd6,Eykaryo. plasma
+3tui,Gram-neg. inner
+4tkr,Gram-pos. inner
+5fp2,Gram-neg. outer
+7p34,Gram-neg. inner
+7ji3,Eykaryo. plasma
+4ayt,Mitochon. inner
+6gci,Mitochon. inner
+6qkc,Eykaryo. plasma
+6rhz,Thylakoid
+2lhf,Gram-neg. outer
+2yiu,Gram-neg. inner
+7wwb,Eykaryo. plasma
+2k74,Gram-neg. inner
+7d3u,Gram-pos. inner
+6ye4,Gram-neg. inner
+5l25,Eykaryo. plasma
+6nhh,Gram-neg. inner
+6vja,Eykaryo. plasma
+3b4r,Archaebac.
+4hg6,Gram-neg. inner
+3dh4,Gram-neg. inner
+3puw,Gram-neg. inner
+7p2p,Endoplasm. reticulum
+5wua,Eykaryo. plasma
+6p9x,Eykaryo. plasma
+7mhz,Endoplasm. reticulum
+7ccs,Eykaryo. plasma
+2z73,Eykaryo. plasma
+6li0,Eykaryo. plasma
+8djk,Endoplasm. reticulum
+6i97,Gram-neg. outer
+7n4x,Eykaryo. plasma
+7yzi,Gram-pos. inner
+7kka,Gram-neg. inner
+3wu2,Thylakoid
+6tzk,Gram-neg. outer
+6o58,Mitochon. inner
+2erv,Gram-neg. outer
+6dw0,Eykaryo. plasma
+2klu,Eykaryo. plasma
+1vgo,Archaebac.
+5iwk,Eykaryo. plasma
+4rl9,Gram-neg. outer
+3wme,Eykaryo. plasma
+2mgy,Mitochon. outer
+6u0o,Gram-pos. inner
+7bw1,Endoplasm. reticulum
+2vdf,Gram-neg. outer
+6ak3,Eykaryo. plasma
+6vyh,Eykaryo. plasma
+2qi9,Gram-neg. inner
+4rp8,Gram-neg. inner
+3wi4,Gram-neg. outer
+6n3q,Endoplasm. reticulum
+7mew,Gram-neg. inner
+5twv,Eykaryo. plasma
+2vqi,Gram-neg. outer
+4q79,Gram-neg. outer
+3j1z,Gram-neg. inner
+2onk,Archaebac.
+2lly,Eykaryo. plasma
+6ww2,Eykaryo. plasma
+3b60,Gram-neg. inner
+3qe7,Gram-neg. inner
+6mg8,Eykaryo. plasma
+7drt,Eykaryo. plasma
+7xat,Eykaryo. plasma
+4xk8,Thylakoid
+2xut,Gram-neg. inner
+4myc,Mitochon. inner
+2h8a,Endoplasm. reticulum
+7c9r,Thylakoid
+6tt7,Mitochon. inner
+6xmp,Endoplasm. reticulum
+2wlk,Gram-neg. inner
+7mdc,Gram-neg. inner
+6fmx,Gram-pos. inner
+5xjy,Eykaryo. plasma
+2ita,Gram-neg. inner
+6yuz,Eykaryo. plasma
+4gd3,Gram-neg. inner
+3o7q,Gram-neg. inner
+6rx4,Gram-neg. inner
+6lkn,Endoplasm. reticulum
+6eyu,Archaebac.
+4dkl,Eykaryo. plasma
+6jpf,Eykaryo. plasma
+7cr0,Eykaryo. plasma
+5v8k,Gram-pos. inner
+4c9g,Mitochon. inner
+3jc2,Endoplasm. reticulum
+7nb6,Gram-neg. inner
+6wxr,Eykaryo. plasma
+4j72,Gram-neg. inner
+4n4r,Gram-neg. outer
+2l16,Gram-pos. inner
+2qts,Eykaryo. plasma
+5hk1,Endoplasm. reticulum
+5jwy,Gram-neg. inner
+3ldc,Archaebac.
+3tx3,Gram-neg. inner
+4j9u,Gram-neg. inner
+5oyk,Gram-neg. outer
+6ww7,Endoplasm. reticulum
+4gx0,Gram-neg. inner
+6jbh,Gram-pos. inner
+6tko,Eykaryo. plasma
+5a2n,Eykaryo. plasma
+6hwh,Gram-pos. inner
+6leo,Eykaryo. plasma
+6m04,Eykaryo. plasma
+7eeb,Eykaryo. plasma
+7p16,Eykaryo. plasma
+3s0x,Archaebac.
+7dtw,Eykaryo. plasma
+3qf4,Gram-neg. inner
+6so5,Endoplasm. reticulum
+6k1h,Gram-neg. inner
+7cae,Gram-pos. inner
+2wwb,Endoplasm. reticulum
+7ezz,Gram-neg. outer
+2kse,Gram-neg. inner
+6irs,Eykaryo. plasma
+3d31,Archaebac.
+6m17,Eykaryo. plasma
+4a2n,Archaebac.
+7ew6,Thylakoid
+7k7a,Eykaryo. plasma
+7e4i,Mitochon. outer
+7jgb,Gram-pos. inner
+7jv5,Eykaryo. plasma
+4us3,Gram-pos. inner
+1yce,Gram-neg. inner
+7ku5,Thylakoid
+6lw5,Eykaryo. plasma
+6qc6,Mitochon. inner
+7t6d,Gram-neg. inner
+2iwv,Gram-neg. outer
+6qd5,Eykaryo. plasma
+6x4s,Mitochon. inner
+6kfq,Gram-pos. inner
+2bl2,Gram-pos. inner
+7x1t,Eykaryo. plasma
+5doq,Gram-pos. inner
+5jsi,Gram-pos. inner
+6e3y,Eykaryo. plasma
+4z3n,Gram-neg. inner
+7e4g,Archaebac.
+6s7o,Endoplasm. reticulum
+2bs2,Gram-neg. inner
+5zji,Thylakoid
+7d6x,Gram-pos. inner
+3dzm,Gram-neg. outer
+2jp3,Eykaryo. plasma
+6j5j,Mitochon. inner
+3hb3,Gram-neg. inner
+5x5y,Gram-neg. inner
+4b7o,Gram-neg. outer
+7lg1,Eykaryo. plasma
+6wj6,Thylakoid
+4rdr,Gram-neg. outer
+5mlz,Archaebac.
+5cbg,Gram-pos. inner
+5guw,Gram-neg. inner
+4or2,Eykaryo. plasma
+7o37,Mitochon. inner
+5vkv,Gram-neg. inner
+7p5c,Eykaryo. plasma
+5kk2,Eykaryo. plasma
+7n6q,Endoplasm. reticulum
+4b2q,Mitochon. inner
+3gp6,Gram-neg. outer
+3ddl,Gram-neg. inner
+4fqe,Gram-neg. outer
+7op3,Endoplasm. reticulum
+5af1,Eykaryo. plasma
+6hcp,Gram-neg. outer
+1dxr,Thylakoid
+6xpd,Eykaryo. plasma
+6fv6,Gram-neg. inner
+6by3,Gram-pos. inner
+3gia,Archaebac.
+7spc,Gram-neg. outer
+3l1l,Gram-neg. inner
+6g9o,Eykaryo. plasma
+7w6k,Eykaryo. plasma
+4g1u,Gram-neg. inner
+6u9v,Eykaryo. plasma
+6f7h,Eykaryo. plasma
+7tuy,Eykaryo. plasma
+6dlz,Eykaryo. plasma
+5y5s,Thylakoid
+6tqe,Gram-pos. inner
+1kqf,Gram-neg. inner
+7xbw,Eykaryo. plasma
+6s3r,Gram-neg. inner
+7eq1,Eykaryo. plasma
+5xmj,Gram-neg. inner
+4xt3,Eykaryo. plasma
+3spc,Eykaryo. plasma
+7aqq,Mitochon. inner
+3csl,Gram-neg. outer
+6sni,Endoplasm. reticulum
+3llq,Gram-neg. inner
+6c5w,Mitochon. inner
+6jnf,Mitochon. outer
+5xtd,Mitochon. inner
+4dji,Gram-neg. inner
+5u1d,Endoplasm. reticulum
+6jfy,Eykaryo. plasma
+6yez,Thylakoid
+4v6m,Gram-neg. inner
+1qle,Gram-neg. inner
+6ds5,Endoplasm. reticulum
+2xok,Mitochon. inner
+5nam,Eykaryo. plasma
+7jjo,Eykaryo. plasma
+5ekq,Gram-neg. outer
+3hfx,Gram-neg. inner
+5v7p,Endoplasm. reticulum
+2l9u,Eykaryo. plasma
+1h2s,Archaebac.
+6o3c,Eykaryo. plasma
+7o0w,Gram-neg. inner
+7d99,Eykaryo. plasma
+6f0k,Gram-neg. inner
+6d6t,Eykaryo. plasma
+5cfb,Eykaryo. plasma
+3dwo,Gram-neg. outer
+5mrw,Gram-neg. inner
+5edl,Gram-pos. inner
+4aq9,Eykaryo. plasma
+5l8r,Thylakoid
+5yw7,Eykaryo. plasma
+1rwt,Thylakoid
+7x20,Eykaryo. plasma
+7vlx,Gram-pos. inner
+6fok,Gram-neg. outer
+2h88,Mitochon. inner
+1afo,Eykaryo. plasma
+7zgx,Gram-neg. outer
+7btw,Mitochon. outer
+6v4a,Gram-neg. inner
+7ng8,Gram-neg. outer
+5lnk,Mitochon. inner
+6lod,Gram-neg. inner
+3rfu,Gram-neg. inner
+7deg,Gram-neg. inner
+3zk1,Gram-neg. inner
+3jad,Eykaryo. plasma
+7zc6,Gram-pos. inner
+4pl0,Gram-neg. inner
+6pep,Gram-neg. inner
+4e1s,Gram-neg. outer
+7bvf,Gram-pos. inner
+1a91,Gram-neg. inner
+7ssv,Eykaryo. plasma
+5oek,Eykaryo. plasma
+7a24,Mitochon. inner
+1nek,Gram-neg. inner
+6vpv,Thylakoid
+4umv,Gram-neg. inner
+3rvy,Gram-neg. inner
+5x3x,Gram-neg. inner
+7k0l,Endoplasm. reticulum
+6f2g,Gram-pos. inner
+6hcy,Eykaryo. plasma
+7fh1,Eykaryo. plasma
+5tcx,Eykaryo. plasma
+2na6,Eykaryo. plasma
+7ahc,Gram-pos. inner
+5h1r,Eykaryo. plasma
+3vvk,Archaebac.
+1zcd,Gram-neg. inner
+6fos,Thylakoid
+5azb,Gram-neg. inner
+5f15,Gram-neg. inner
+6hum,Gram-neg. inner
+6wvg,Eykaryo. plasma
+7nvh,Gram-pos. inner
+2k9y,Eykaryo. plasma
+6k61,Thylakoid
+2fgq,Gram-neg. outer
+4wmz,Endoplasm. reticulum
+7e87,Eykaryo. plasma
+6qam,Gram-neg. outer
+6h7d,Eykaryo. plasma
+3p5n,Gram-pos. inner
+4ntf,Endoplasm. reticulum
+6ei3,Gram-neg. inner
+5nj3,Eykaryo. plasma
+5do7,Eykaryo. plasma
+5a40,Gram-neg. inner
+1nqe,Gram-neg. outer
+7m1u,Archaebac.
+4yuu,Thylakoid
+6lyp,Mitochon. inner
+7bty,Mitochon. outer
+3um7,Eykaryo. plasma
+4d51,Gram-neg. outer
+6uun,Eykaryo. plasma
+7wsm,Eykaryo. plasma
+6k6i,Gram-neg. inner
+6zbb,Mitochon. inner
+2ahy,Gram-pos. inner
+2mv6,Eykaryo. plasma
+6adq,Gram-pos. inner
+3mk7,Gram-neg. inner
+6fwf,Gram-neg. inner
+6cfw,Archaebac.
+6r72,Gram-pos. inner
+6zzx,Thylakoid
+3jqo,Gram-neg. outer
+6g1k,Eykaryo. plasma
+4rlc,Gram-neg. outer
+4bgn,Gram-pos. inner
+2k9p,Eykaryo. plasma
+6m02,Eykaryo. plasma
+6p9y,Eykaryo. plasma
+1l0l,Mitochon. inner
+6nt6,Endoplasm. reticulum
+7cx4,Eykaryo. plasma
+7rsl,Endoplasm. reticulum
+7mjs,Eykaryo. plasma
+5zaz,Eykaryo. plasma
+6rfr,Mitochon. inner
+6b3r,Eykaryo. plasma
+4hum,Gram-neg. inner
+7f16,Eykaryo. plasma
+6nwf,Gram-neg. inner
+5ldw,Mitochon. inner
+4ryi,Gram-pos. inner
+5ayn,Gram-neg. inner
+6ve2,Gram-neg. outer
+4qtn,Gram-neg. inner
+5llu,Eykaryo. plasma
+2lop,Mitochon. inner
+5oc9,Eykaryo. plasma
+7epc,Eykaryo. plasma
+4kt0,Thylakoid
+7wff,Thylakoid
+5y4o,Gram-neg. inner
+5xu1,Gram-pos. inner
+2n4x,Archaebac.
+5uld,Gram-neg. inner
+5fgn,Gram-neg. inner
+6l3t,Eykaryo. plasma
+7e1v,Gram-pos. inner
+2xzb,Eykaryo. plasma
+5azs,Gram-neg. outer
+6xdc,Eykaryo. plasma
+6mlu,Endoplasm. reticulum
+7w7g,Eykaryo. plasma
+1pw4,Gram-neg. inner
+1q90,Thylakoid
+3qlb,Gram-neg. outer
+7f8v,Eykaryo. plasma
+6h59,Gram-pos. inner
+6kg7,Eykaryo. plasma
+7pbw,Gram-neg. inner
+7qba,Gram-neg. inner
+4hfi,Gram-neg. inner
+2hyd,Gram-pos. inner
+4zyo,Endoplasm. reticulum
+5iv9,Gram-neg. outer
+6oce,Eykaryo. plasma
+7kh0,Eykaryo. plasma
+6vd7,Eykaryo. plasma
+4m58,Gram-pos. inner
+2lzl,Eykaryo. plasma
+2ndj,Eykaryo. plasma
+7p2y,Gram-neg. inner
+5z1f,Eykaryo. plasma
+5x41,Gram-neg. inner
+7ot9,Gram-neg. inner
+8e9g,Gram-pos. inner
+5xtc,Mitochon. inner
+5jnq,Gram-pos. inner
+6uiv,Eykaryo. plasma
+6v22,Eykaryo. plasma
+6wuh,Mitochon. outer
+5xsy,Eykaryo. plasma
+5uj9,Eykaryo. plasma
+5wuf,Gram-neg. inner
+6dz7,Eykaryo. plasma
+7oiu,Gram-neg. outer
+5tsa,Gram-neg. inner
+5dir,Gram-neg. inner
+3vw7,Eykaryo. plasma
+6lcp,Eykaryo. plasma
+3tlm,Endoplasm. reticulum
+6sh3,Mitochon. inner
+2ksr,Eykaryo. plasma
+5ctg,Eykaryo. plasma
+1a0s,Gram-neg. outer
+4quv,Gram-neg. inner
+7oz1,Eykaryo. plasma
+2bbj,Gram-neg. inner
+3hzq,Gram-pos. inner
+6rw3,Eykaryo. plasma
+2ynk,Gram-neg. outer
+7stl,Eykaryo. plasma
+5zlg,Eykaryo. plasma
+6h8k,Mitochon. inner
+4qnd,Gram-neg. inner
+6o84,Eykaryo. plasma
+4ri2,Thylakoid
+7ojf,Gram-neg. outer
+4fc4,Gram-neg. inner
+7wq3,Eykaryo. plasma
+7d06,Gram-neg. inner
+4p79,Eykaryo. plasma
+2pil,Gram-neg. inner
+6n1g,Eykaryo. plasma
+5uen,Eykaryo. plasma
+2qfi,Gram-neg. inner
+7ewl,Eykaryo. plasma
+6bar,Gram-neg. inner
+6k41,Eykaryo. plasma
+3qnq,Gram-pos. inner
+1jb0,Thylakoid
+5sv9,Eykaryo. plasma
+6y9b,Eykaryo. plasma
+6i6h,Endoplasm. reticulum
+7e9h,Eykaryo. plasma
+6p25,Endoplasm. reticulum
+6is6,Archaebac.
+3prn,Gram-neg. outer
+3kly,Gram-neg. inner
+7tx6,Eykaryo. plasma
+6mjp,Gram-neg. inner
+4mrs,Gram-neg. inner
+7w74,Gram-neg. inner
+6mhy,Eykaryo. plasma
+2m6x,Endoplasm. reticulum
+4m64,Gram-neg. inner
+3bs0,Gram-neg. outer
+2l2t,Eykaryo. plasma
+4tq4,Archaebac.
+6me7,Eykaryo. plasma
+5xj5,Gram-neg. inner
+6mgv,Eykaryo. plasma
+6cjt,Gram-neg. inner
+7miy,Eykaryo. plasma
+7cge,Gram-neg. inner
+2oar,Gram-pos. inner
+5xpd,Eykaryo. plasma
+7pgi,Gram-neg. inner
+5vkq,Eykaryo. plasma
+2n7r,Eykaryo. plasma
+2m3e,Eykaryo. plasma
+3cap,Eykaryo. plasma
+4y7j,Archaebac.
+6ibb,Eykaryo. plasma
+3j7q,Endoplasm. reticulum
+3chx,Gram-neg. inner
+6x58,Gram-neg. inner
+7efo,Gram-neg. inner
+7wu3,Eykaryo. plasma
+6igz,Thylakoid
+1l9b,Thylakoid
+1orq,Archaebac.
+2x2v,Gram-pos. inner
+6r4l,Eykaryo. plasma
+4y25,Gram-neg. outer
+7s3d,Thylakoid
+7lhv,Eykaryo. plasma
+6tej,Gram-pos. inner
+7sk2,Eykaryo. plasma
+6g7o,Endoplasm. reticulum
+5ixm,Gram-neg. outer
+6mi8,Gram-neg. inner
+7oix,Eykaryo. plasma
+7sf8,Eykaryo. plasma
+3ohn,Gram-neg. outer
+7cz5,Eykaryo. plasma
+5uiw,Eykaryo. plasma
+6eu6,Gram-neg. inner
+6s7p,Eykaryo. plasma
+6ol9,Eykaryo. plasma
+6su3,Gram-pos. inner
+2j7a,Gram-neg. inner
+7d76,Eykaryo. plasma
+6lke,Mitochon. outer
+4c00,Gram-neg. outer
+6vn7,Eykaryo. plasma
+6fj3,Eykaryo. plasma
+5xar,Gram-neg. inner
+6ddf,Eykaryo. plasma
+3mp7,Archaebac.
+7rh9,Eykaryo. plasma
+2f1v,Gram-neg. outer
+4wis,Eykaryo. plasma
+5vms,Eykaryo. plasma
+6w6m,Gram-neg. outer
+1q16,Gram-neg. inner
+6w98,Gram-pos. inner
+6lvf,Gram-neg. inner
+6wm5,Gram-pos. inner
+4bem,Gram-pos. inner
+4hyg,Archaebac.
+6cxh,Gram-neg. inner
+4xe5,Eykaryo. plasma
+3njt,Gram-neg. outer
+1p49,Endoplasm. reticulum
+6kob,Gram-pos. inner
+2mi2,Gram-neg. inner
+6ksw,Eykaryo. plasma
+6iyc,Eykaryo. plasma
+2e74,Thylakoid
+2wjr,Gram-neg. outer
+5ktf,Eykaryo. plasma
+3jbr,Eykaryo. plasma
+5uar,Eykaryo. plasma
+4gey,Gram-neg. outer
+6ynw,Mitochon. inner
+6mit,Gram-neg. inner
+3zuy,Gram-neg. inner
+7vh5,Eykaryo. plasma
+3rbh,Gram-neg. outer
+6sss,Endoplasm. reticulum
+6mmr,Eykaryo. plasma
+1zll,Endoplasm. reticulum
+6gyh,Eykaryo. plasma
+4av3,Gram-neg. inner
+6a69,Eykaryo. plasma
+5iji,Gram-neg. inner
+4aip,Gram-neg. outer
+4lds,Gram-pos. inner
+6giq,Mitochon. inner
+1eys,Thylakoid
+7xbd,Eykaryo. plasma
+6ytx,Eykaryo. plasma
+6q53,Thylakoid
+2qjy,Gram-neg. inner
+6pw4,Eykaryo. plasma
+4uis,Eykaryo. plasma
+7k15,Eykaryo. plasma
+6i9k,Eykaryo. plasma
+8apa,Mitochon. inner
+7coy,Thylakoid
+7ddq,Gram-neg. inner
+6pnj,Thylakoid
+6khi,Gram-neg. inner
+2vpz,Gram-neg. inner
+5kzo,Eykaryo. plasma
+5oqt,Gram-pos. inner
+3ne2,Archaebac.
+7sgr,Gram-neg. inner
+6s7v,Gram-pos. inner
+5kua,Gram-neg. inner
+5t77,Gram-neg. inner
+7nqk,Eykaryo. plasma
+5hk7,Gram-neg. inner
+1mhs,Eykaryo. plasma
+7byl,Eykaryo. plasma
+2vl0,Gram-neg. inner
+5n6m,Gram-neg. inner
+2k3m,Gram-pos. inner
+5oqk,Eykaryo. plasma
+4f4l,Gram-neg. inner
+2lme,Gram-neg. outer
+6wv3,Endoplasm. reticulum
+7py4,Eykaryo. plasma
+7nyr,Gram-neg. inner
+2lck,Mitochon. inner
+3fhh,Gram-neg. outer
+5xls,Gram-neg. inner
+3ux4,Gram-neg. inner
+6z16,Gram-pos. inner
+6m34,Archaebac.
+3nd0,Gram-neg. inner
+6xi0,Gram-neg. inner
+6akg,Eykaryo. plasma
+6zxa,Thylakoid
+3t9n,Gram-pos. inner
+2m0q,Eykaryo. plasma
+1kf6,Gram-neg. inner
+5a43,Gram-neg. inner
+7xna,Eykaryo. plasma
+6zy2,Gram-neg. inner
+7vor,Gram-neg. inner
+3c02,Eykaryo. plasma
+1m56,Gram-neg. inner
+6kzo,Eykaryo. plasma
+2b2f,Archaebac.
+5kbt,Eykaryo. plasma
+3m73,Gram-neg. inner
+7nib,Gram-neg. inner
+3qra,Gram-neg. outer
+5guf,Archaebac.
+3x29,Eykaryo. plasma
+6l47,Endoplasm. reticulum
+5b58,Gram-neg. inner
+4pe5,Eykaryo. plasma
+7dys,Eykaryo. plasma
+7bc6,Eykaryo. plasma
+4zp0,Gram-neg. inner
+6zdb,Mitochon. inner
+4rl8,Gram-neg. outer
+2yev,Gram-neg. inner
+6cq8,Eykaryo. plasma
+7f9y,Eykaryo. plasma
+6gux,Archaebac.
+2n90,Eykaryo. plasma
+5oy0,Thylakoid
+6xiw,Eykaryo. plasma
+7jrg,Mitochon. inner
+1p4t,Gram-neg. outer
+3fid,Gram-neg. outer
+4ezc,Eykaryo. plasma
+2nq2,Gram-neg. inner
+1qjp,Gram-neg. outer
+7ph8,Eykaryo. plasma
+6ith,Eykaryo. plasma
+2hac,Eykaryo. plasma
+7nh9,Gram-neg. inner
+4cz8,Archaebac.
+6vp0,Endoplasm. reticulum
+5k7l,Eykaryo. plasma
+6ob7,Eykaryo. plasma
+7d5i,Gram-pos. inner
+5osa,Eykaryo. plasma
+7s9y,Gram-neg. inner
+4kjs,Gram-pos. inner
+5xte,Mitochon. inner
+7pge,Gram-neg. outer
+4il3,Endoplasm. reticulum
+4phu,Eykaryo. plasma
+4n6h,Eykaryo. plasma
+6sgw,Gram-pos. inner
+6c14,Eykaryo. plasma
+7xtb,Eykaryo. plasma
+5i20,Gram-neg. inner
+6vwx,Gram-pos. inner
+4uv3,Gram-neg. outer
+7wld,Endoplasm. reticulum
+7eib,Eykaryo. plasma
+2k1k,Eykaryo. plasma
+1iij,Eykaryo. plasma
+7vu5,Eykaryo. plasma
+6gv9,Gram-neg. inner
+7vl8,Eykaryo. plasma
+6v81,Gram-neg. outer
+1wu0,Gram-pos. inner
+5kte,Gram-neg. inner
+2zqp,Gram-neg. inner
+6li9,Eykaryo. plasma
+5oyb,Eykaryo. plasma
+6yv7,Archaebac.
+5c78,Gram-neg. inner
+8crt,Eykaryo. plasma
+6dhe,Thylakoid
+3b8e,Eykaryo. plasma
+3din,Gram-neg. inner
+5z62,Mitochon. inner
+5fl7,Mitochon. inner
+2zxe,Eykaryo. plasma
+6c3o,Eykaryo. plasma
+6k6k,Gram-neg. inner
+6qti,Mitochon. inner
+4epa,Gram-neg. outer
+7mit,Eykaryo. plasma
+4jr9,Gram-neg. inner
+7r0w,Thylakoid
+7wi6,Eykaryo. plasma
+6vk9,Gram-neg. inner
+5dn6,Gram-neg. inner
+6sp2,Eykaryo. plasma
+6kuw,Eykaryo. plasma
+7wjm,Eykaryo. plasma
+6xkz,Gram-neg. inner
+5nik,Gram-neg. inner
+5khs,Gram-neg. inner
+2lon,Mitochon. inner
+4od5,Archaebac.
+3zd0,Endoplasm. reticulum
+4grv,Eykaryo. plasma
+5o78,Gram-neg. outer
+7vby,Mitochon. outer
+2oau,Gram-neg. inner
+2xow,Gram-neg. inner
+3j9p,Eykaryo. plasma
+4mee,Gram-neg. outer
+6s3l,Gram-neg. inner
+2lj2,Gram-neg. inner
+5wud,Archaebac.
+3ne5,Gram-neg. inner
+6w4s,Eykaryo. plasma
+4djh,Eykaryo. plasma
+6e9n,Gram-neg. inner
+2jo1,Eykaryo. plasma
+6rbg,Gram-neg. inner
+7try,Eykaryo. plasma
+6ki1,Gram-neg. inner
+6ijj,Thylakoid
+3hd7,Eykaryo. plasma
+2w2e,Eykaryo. plasma
+5och,Mitochon. inner
+7ks0,Eykaryo. plasma
+5zgg,Eykaryo. plasma
+8ef5,Eykaryo. plasma
+3b9y,Gram-neg. inner
+6za9,Mitochon. inner
+6t1z,Gram-pos. inner
+7cj3,Eykaryo. plasma
+7ksq,Thylakoid
+7cqk,Endoplasm. reticulum
+7zou,Gram-neg. inner
+1kmo,Gram-neg. outer
+5kbw,Gram-neg. inner
+7a46,Gram-neg. inner
+2x72,Eykaryo. plasma
+7dcv,Eykaryo. plasma
+2o4v,Gram-neg. outer
+3pl9,Thylakoid
+7f4v,Thylakoid
+6zbv,Eykaryo. plasma
+6g9x,Gram-neg. inner
+4k3b,Gram-neg. outer
+2kog,Eykaryo. plasma
+1s5h,Gram-pos. inner
+6ezn,Endoplasm. reticulum
+4wav,Archaebac.
+6mie,Eykaryo. plasma
+3j45,Gram-neg. inner
+6sln,Gram-neg. outer
+6xjh,Gram-pos. inner
+6ly9,Gram-neg. inner
+4kfm,Eykaryo. plasma
+7npw,Eykaryo. plasma
+2k1a,Eykaryo. plasma
+6x89,Mitochon. inner
+6l35,Thylakoid
+2mlh,Gram-neg. outer
+6ftj,Endoplasm. reticulum
+6b2z,Mitochon. inner
+6cnm,Eykaryo. plasma
+5o65,Gram-neg. outer
+6ysf,Gram-pos. inner
+6y7f,Endoplasm. reticulum
+4pir,Eykaryo. plasma
+7qhm,Gram-pos. inner
+7bvc,Gram-pos. inner
+5ksd,Eykaryo. plasma
+1jo5,Thylakoid
+1zrt,Gram-neg. inner
+7qe5,Gram-neg. inner
+7ocy,Gram-pos. inner
+6ytl,Eykaryo. plasma
+6vx7,Eykaryo. plasma
+7sa3,Thylakoid
+6tmh,Mitochon. inner
+1lgh,Thylakoid
+6w25,Eykaryo. plasma
+4nef,Eykaryo. plasma
+1fft,Gram-neg. inner
+6a2w,Thylakoid
+7piv,Eykaryo. plasma
+7mbz,Gram-neg. inner
+6nav,Archaebac.
+5mg3,Gram-neg. inner
+6ko5,Eykaryo. plasma
+6uks,Mitochon. inner
+3j7r,Endoplasm. reticulum
+4xyd,Gram-neg. inner
+4k0e,Gram-neg. inner
+6lyr,Gram-neg. outer
+7lzh,Eykaryo. plasma
+3k3f,Gram-neg. inner
+4ry2,Gram-pos. inner
+6kkt,Eykaryo. plasma
+6d7w,Mitochon. inner
+7b7o,Thylakoid
+6hrc,Gram-neg. inner
+6zr2,Mitochon. inner
+7d7r,Eykaryo. plasma
+5dwy,Archaebac.
+1m0l,Archaebac.
+2mpn,Gram-neg. inner
+4j7c,Gram-pos. inner
+4q65,Gram-neg. inner
+6mi7,Gram-neg. inner

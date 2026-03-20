@@ -1,0 +1,53 @@
+
+
+
+---------- 2026-03-20 17:44:46 (0:00:00) ----------
+Files:   hashed 0/5728 (0.0/374.9M) | pre-uploaded: 0/0 (0.0/374.9M) (+5728 unsure) | committed: 0/5728 (0.0/374.9M) | ignored: 0
+Workers: hashing: 32 | get upload mode: 0 | pre-uploading: 0 | committing: 0 | waiting: 0
+---------------------------------------------------
+[K[F[K[F[K[F[K[F[K[F[K[F[K[F
+---------- 2026-03-20 17:45:46 (0:01:00) ----------
+Files:   hashed 5728/5728 (374.9M/374.9M) | pre-uploaded: 0/0 (0.0/374.9M) | committed: 800/5728 (49.6M/374.9M) | ignored: 0
+Workers: hashing: 0 | get upload mode: 0 | pre-uploading: 0 | committing: 1 | waiting: 31
+---------------------------------------------------
+                             [K[F[K[F[K[F[K[F[K[F[K[F[K[F
+---------- 2026-03-20 17:46:46 (0:02:00) ----------
+Files:   hashed 5728/5728 (374.9M/374.9M) | pre-uploaded: 0/0 (0.0/374.9M) | committed: 1358/5728 (84.8M/374.9M) | ignored: 0
+Workers: hashing: 0 | get upload mode: 0 | pre-uploading: 0 | committing: 1 | waiting: 31
+---------------------------------------------------
+                             [K[F[K[F[K[F[K[F[K[F[K[F[K[F
+---------- 2026-03-20 17:47:46 (0:03:00) ----------
+Files:   hashed 5728/5728 (374.9M/374.9M) | pre-uploaded: 0/0 (0.0/374.9M) | committed: 1800/5728 (114.3M/374.9M) | ignored: 0
+Workers: hashing: 0 | get upload mode: 0 | pre-uploading: 0 | committing: 1 | waiting: 31
+---------------------------------------------------
+                             [K[F[K[F[K[F[K[F[K[F[K[F[K[F
+---------- 2026-03-20 17:48:46 (0:04:00) ----------
+Files:   hashed 5728/5728 (374.9M/374.9M) | pre-uploaded: 0/0 (0.0/374.9M) | committed: 2400/5728 (152.7M/374.9M) | ignored: 0
+Workers: hashing: 0 | get upload mode: 0 | pre-uploading: 0 | committing: 1 | waiting: 31
+---------------------------------------------------
+                             [K[F[K[F[K[F[K[F[K[F[K[F[K[F
+---------- 2026-03-20 17:49:46 (0:05:00) ----------
+Files:   hashed 5728/5728 (374.9M/374.9M) | pre-uploaded: 0/0 (0.0/374.9M) | committed: 3042/5728 (194.2M/374.9M) | ignored: 0
+Workers: hashing: 0 | get upload mode: 0 | pre-uploading: 0 | committing: 1 | waiting: 31
+---------------------------------------------------
+                             [K[F[K[F[K[F[K[F[K[F[K[F[K[F
+---------- 2026-03-20 17:50:46 (0:06:00) ----------
+Files:   hashed 5728/5728 (374.9M/374.9M) | pre-uploaded: 0/0 (0.0/374.9M) | committed: 3600/5728 (233.2M/374.9M) | ignored: 0
+Workers: hashing: 0 | get upload mode: 0 | pre-uploading: 0 | committing: 1 | waiting: 31
+---------------------------------------------------
+                             [K[F[K[F[K[F[K[F[K[F[K[F[K[F
+---------- 2026-03-20 17:51:46 (0:07:00) ----------
+Files:   hashed 5728/5728 (374.9M/374.9M) | pre-uploaded: 0/0 (0.0/374.9M) | committed: 4200/5728 (270.3M/374.9M) | ignored: 0
+Workers: hashing: 0 | get upload mode: 0 | pre-uploading: 0 | committing: 1 | waiting: 31
+---------------------------------------------------
+                             [K[F[K[F[K[F[K[F[K[F[K[F[K[F
+---------- 2026-03-20 17:52:46 (0:08:00) ----------
+Files:   hashed 5728/5728 (374.9M/374.9M) | pre-uploaded: 0/0 (0.0/374.9M) | committed: 4800/5728 (312.3M/374.9M) | ignored: 0
+Workers: hashing: 0 | get upload mode: 0 | pre-uploading: 0 | committing: 1 | waiting: 31
+---------------------------------------------------
+                             [K[F[K[F[K[F[K[F[K[F[K[F[K[F
+---------- 2026-03-20 17:53:46 (0:09:00) ----------
+Files:   hashed 5728/5728 (374.9M/374.9M) | pre-uploaded: 0/0 (0.0/374.9M) | committed: 5400/5728 (353.9M/374.9M) | ignored: 0
+Workers: hashing: 0 | get upload mode: 0 | pre-uploading: 0 | committing: 1 | waiting: 31
+---------------------------------------------------
+                             PDBs uploaded!
