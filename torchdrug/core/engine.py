@@ -12,7 +12,7 @@ from torchdrug import data, core, utils
 from torchdrug.core import Registry as R
 from torchdrug.utils import comm, pretty
 from torch.nn import functional as F
-
+from sklearn.metrics import f1_score
 import numpy as np
 import wandb
 
@@ -199,6 +199,7 @@ class Engine(core.Configurable):
         loss_val = []
         acc_train = []
         acc_val = []
+        
         if self.world_size > 1:
             if self.device.type == "cuda":
                 model = nn.parallel.DistributedDataParallel(model, device_ids=[self.device],
@@ -206,7 +207,7 @@ class Engine(core.Configurable):
             else:
                 model = nn.parallel.DistributedDataParallel(model, find_unused_parameters=True)
         model.train()
-        wandb.watch(model, log = 'all', log_freq = 3)
+        wandb.watch(model, log='all', log_freq=3)
 
         for epoch in self.meter(num_epoch):
             sampler.set_epoch(epoch)
@@ -215,10 +216,15 @@ class Engine(core.Configurable):
             start_id = 0
             # the last gradient update may contain less than gradient_interval batches
             gradient_interval = min(batch_per_epoch - start_id, self.gradient_interval)
-            total_loss_train = 0
-            total_samples_train = 0
-            total_correct_train = 0
-            num_batches = 0
+            total_loss_train = 0  # added variable for each epoch
+            total_samples_train = 0 # added variable for each epoch
+            total_correct_train = 0 # added variable for each epoch
+            num_batches = 0 # added variable for each epoch
+            
+            # --- F1 Tracking Lists ---
+            train_preds_list = []
+            train_targets_list = []
+
             for batch_id, batch in enumerate(islice(dataloader, batch_per_epoch)):
                 if self.device.type == "cuda":
                     batch = utils.cuda(batch, device=self.device)
@@ -232,20 +238,21 @@ class Engine(core.Configurable):
                 metrics.append(metric)
                 num_batches += 1
 
-                # pred, target = model.module.predict_and_target(batch)
                 if isinstance(model, nn.parallel.DistributedDataParallel):
                     actual_model = model.module
                 else:
                     actual_model = model
 
                 pred, target = actual_model.predict_and_target(batch)
-                # pred, target = model.predict_and_target(batch)
-                # print(f"pred: {pred}")
-                # print(f"target: {target}")
-                pred = torch.argmax(pred, dim=1)
-                target = target.squeeze(1).long()
-                total_correct_train += (pred == target).sum().item()
-                total_samples_train += target.size(0)
+                pred_argmax = torch.argmax(pred, dim=1)
+                target_squeeze = target.squeeze(1).long()
+                
+                total_correct_train += (pred_argmax == target_squeeze).sum().item()
+                total_samples_train += target_squeeze.size(0)
+                
+                # Append to our F1 tracking lists
+                train_preds_list.append(pred_argmax.detach().cpu())
+                train_targets_list.append(target_squeeze.detach().cpu())
 
                 if batch_id - start_id + 1 == gradient_interval:
                     self.optimizer.step()
@@ -261,51 +268,82 @@ class Engine(core.Configurable):
                     start_id = batch_id + 1
                     gradient_interval = min(batch_per_epoch - start_id, self.gradient_interval)
 
-           
-
+            ### for train loss and accuracy
             avg_loss_train = total_loss_train / num_batches
             loss_train.append(avg_loss_train)
-
             acc_train_epoch = total_correct_train / total_samples_train
-            acc_train.append(acc_train_epoch)
-
-            vloss, vacc = self.evaluate_loss('valid', False)
-            if vloss < (best_val_loss):
-                
-                print(f'Validation loss decreased ( {best_val_loss:.6f} ------> {vloss:.6f} ).  Saving model ...')
+            acc_train.append(acc_train_epoch) 
+            
+            # Calculate Train F1 Weighted
+            all_train_preds = torch.cat(train_preds_list, dim=0).numpy()
+            all_train_targets = torch.cat(train_targets_list, dim=0).numpy()
+            train_f1_weighted = f1_score(all_train_targets, all_train_preds, average='weighted', zero_division=0)
+            # vloss, vacc, val_f1_weighted, val_f1_macro = self.evaluate_loss('valid', False)
+            
+            has_valid_set = hasattr(self, "valid_set") and self.valid_set is not None and len(self.valid_set) > 0
+            
+            if has_valid_set:
+                vloss, vacc, val_f1_weighted, val_f1_macro = self.evaluate_loss('valid', False)
+            else:
+                # Production mode: No valid set found, bypass evaluate_loss
+                # We map validation metrics to training metrics so the scheduler/saving logic survives
+                vloss = avg_loss_train
+                vacc = acc_train_epoch
+                val_f1_weighted = train_f1_weighted
+                val_f1_macro = 0.0
+            
+            if vloss < best_val_loss:
+                if has_valid_set:
+                    print(f'Validation loss decreased ( {best_val_loss:.6f} ------> {vloss:.6f} ).  Saving model ...')
+                else:
+                    print(f'Train loss decreased ( {best_val_loss:.6f} ------> {vloss:.6f} ).  Saving production model ...')
                 best_val_loss = vloss
-
-                print('saving the best model in  --->>>>>>>>>>') ### check the path
-                self.save(self.best_model_path) ## match the path here and in the main script
+                print('saving the best model in  --->>>>>>>>>>') 
+                self.save(self.best_model_path) 
+                
             if self.scheduler:
-                self.scheduler.step(vloss)
+                # If we go back to Plateau later, it needs the vloss
+                if isinstance(self.scheduler, torch.optim.lr_scheduler.ReduceLROnPlateau):
+                    self.scheduler.step(vloss)
+                # Cosine Annealing just steps automatically!
+                else:
+                    self.scheduler.step()
 
             loss_val.append(vloss)
             acc_val.append(vacc)
-            wandb.log({'wandb_val_loss_epoch':vloss, 'wandb_train_loss_epoch':avg_loss_train, 'wandbmy_val_accuracy':vacc, 'wandbmy_train_accuracy':acc_train_epoch, 'my_epoch': epoch})
             
-            self.early_stopping(val_loss= vloss)
-            if self.early_stopping.early_stop:
-                print("early stopping")
-                
-                break
+            # --- Updated W&B Logging ---
+            wandb.log({
+                'wandb_val_loss_epoch': vloss, 
+                'wandb_train_loss_epoch': avg_loss_train, 
+                'wandbmy_val_accuracy': vacc, 
+                'wandbmy_train_accuracy': acc_train_epoch,
+                'best_val_loss': best_val_loss,
+                'val_f1_weighted': val_f1_weighted,
+                'val_f1_macro': val_f1_macro,
+                'train_f1_weighted': train_f1_weighted,
+                'my_epoch': epoch
+            })
             
+            # --- NEW CODE (Safe check) ---
+            if self.early_stopping is not None:
+                self.early_stopping(val_loss=vloss)
+                if self.early_stopping.early_stop:
+                    print("early stopping")
+                    break
 
         loss_train_floats = [round(loss, 2) for loss in loss_train]
-        loss_val_floats = [round(loss.cpu().item(), 2) for loss in loss_val]
+        # loss_val_floats = [round(loss.cpu().item(), 2) for loss in loss_val]
+        loss_val_floats = [round(float(loss), 2) for loss in loss_val]
         acc_train_floats = [round(acc*100, 2) for acc in acc_train]
         acc_val_floats = [round(acc*100, 2) for acc in acc_val]
-        # self.meter.log({'loss_train_floats':loss_train_floats})
-        # self.meter.log({'loss_val_floats':loss_val_floats})
-        # wandb.log({"loss_train_floats": loss_train_floats})
-
         if self.rank == 0:  
             print("END OF TRAINING")
             print(f"tloss={loss_train_floats}")
             print(f"vloss={loss_val_floats}")
             print(f"tacc={acc_train_floats}")
             print(f"vacc={acc_val_floats}")
-        
+
 
     @torch.no_grad()
     def evaluate_loss(self, split, log=False):
@@ -336,56 +374,44 @@ class Engine(core.Configurable):
         correct = 0
         total = 0
         model.eval()
-        #added
-        # my_pred = []
-        # my_target = []
-        # eval_names = []
         for batch in dataloader:
             if self.device.type == "cuda":
                 batch = utils.cuda(batch, device=self.device)
 
             loss, _ = model(batch)
-            # pred, target = model.module.predict_and_target(batch)
+            
             if isinstance(model, nn.parallel.DistributedDataParallel):
                 actual_model = model.module
             else:
                 actual_model = model
 
             pred, target = actual_model.predict_and_target(batch)
-            # pred, target = model.predict_and_target(batch)
             total_loss += loss
-            preds.append(pred)
-            targets.append(target)
-            # my_pred.extend(pred.cpu().numpy().astype(float))
-            # my_target.extend(target.cpu().numpy().astype(int))
-            # eval_names.extend(batch['name'])
-            count +=1 
-            pred = torch.argmax(pred, dim=1)
-            target = target.squeeze(1).long()
-            correct += (pred == target).sum().item()
-            total += target.size(0)
+            count += 1 
             
-        # print('engine_eval_name = ', eval_names)
-        # print('engine_preds = ', my_pred)
-        # print('engine_targets = ', my_target)
-        # my_predictions = [np.argmax(i) for i in my_pred]
-        # my_targets = [ i.item() for i in my_target]
-
-
-        
+            pred_argmax = torch.argmax(pred, dim=1)
+            target_squeeze = target.squeeze(1).long()
             
-            # count +=1 
-            # pred = torch.argmax(pred, dim=1)
-            # target = target.squeeze(1).long()
-            # correct += (pred == target).sum().item()
-            # total += target.size(0)
+            # Append for F1 computation
+            preds.append(pred_argmax.detach().cpu())
+            targets.append(target_squeeze.detach().cpu())
+            
+            correct += (pred_argmax == target_squeeze).sum().item()
+            total += target_squeeze.size(0)
+            
         vacc = correct / total
         avg_loss = total_loss / count   
     
+        # --- Compute Validation F1 Scores ---
+        all_preds = torch.cat(preds, dim=0).numpy()
+        all_targets = torch.cat(targets, dim=0).numpy()
+        
+        val_f1_weighted = f1_score(all_targets, all_preds, average='weighted', zero_division=0)
+        val_f1_macro = f1_score(all_targets, all_preds, average='macro', zero_division=0)
+        
         model.train()
 
-       
-        return avg_loss, vacc
+        return avg_loss, vacc, val_f1_weighted, val_f1_macro
 
     @torch.no_grad()
     def evaluate(self, split, log=True):
@@ -419,8 +445,6 @@ class Engine(core.Configurable):
         for batch in dataloader:
             if self.device.type == "cuda":
                 batch = utils.cuda(batch, device=self.device)
-
-            # pred, target = model.predict_and_target(batch)
             if isinstance(model, nn.parallel.DistributedDataParallel):
                 actual_model = model.module
             else:
@@ -436,25 +460,6 @@ class Engine(core.Configurable):
         print('engine_eval_name = ', eval_names)
         print('engine_preds = ', my_pred)
         print('engine_targets = ', my_target)
-        # my_predictions = [np.argmax(i) for i in my_pred]
-        # my_targets = [ i.item() for i in my_target]
-
-
-        
-        # def get_acc(prediction,target):
-        #     assert len(prediction) == len(target), "Lists must be of the same length."
-
-        #     # Count the number of matches
-        #     matches = sum(1 for p, t in zip(prediction, target) if p == t)
-
-        #     # Calculate accuracy
-        #     accuracy = matches / len(prediction)
-        #     return accuracy
-
-            
-
-        # my_val_accuracy = get_acc(my_predictions,my_targets)
-        
         pred = utils.cat(preds)
         target = utils.cat(targets)
         if self.world_size > 1:
@@ -463,8 +468,6 @@ class Engine(core.Configurable):
         metric = model.evaluate(pred, target)
         if log:
             self.meter.log(metric, category="%s/epoch" % split)
-            # self.meter.log({'my_val_accuracy':my_val_accuracy})
-
         return metric
 
     def load(self, checkpoint, load_optimizer=True, strict=True):
