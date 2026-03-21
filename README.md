@@ -13,34 +13,46 @@ Predicting membrane protein localization using graph neural networks on protein 
 
 ## How It's Made:
 
-**Tech used:** Python, PyTorch, TorchDrug, Graph Neural Networks, CUDA, BioPython
+**Tech used:** Python, PyTorch, TorchDrug, Graph Neural Networks, CUDA, BioPython, Foldseek
 
-This project implements a modified GEARNET architecture built on the TorchDrug framework for classifying membrane proteins into their native environments. The model processes protein structures as graphs where nodes represent α-carbons and edges capture spatial, sequential, and chemical relationships. We trained on a curated dataset from the OPM database across 13+ membrane environments, achieving competitive performance through careful handling of class imbalance and optimized graph construction.
+This project implements a modified GEARNET architecture built on the TorchDrug framework for classifying membrane proteins into their native environments. The model processes protein structures as graphs where nodes represent α-carbons and edges capture spatial, sequential, and chemical relationships. We trained on a curated dataset from the OPM database, achieving competitive performance through rigorous structural de-duplication, careful handling of class imbalance, and an optimized 6-fold nested cross-validation strategy to prevent data leakage.
+
+## 🧬 Data Preprocessing & Splitting Pipeline
+
+To ensure the model is evaluated rigorously, our dataset pipeline is split into two distinct phases:
+
+### Phase 1: Structural Redundancy Removal (Foldseek)
+Standard sequence-based clustering is often insufficient for structural biology tasks. We use **Foldseek** to run strict 3D structural clustering (Sequence Identity $\ge$ 0.3, TM-score $\ge$ 0.3, Coverage $\ge$ 0.8). If a Representative protein and a Member protein fall into the same structural cluster *and* share the same membrane location, the redundant Member is discarded. This forces the model to learn generalizable features rather than memorized structural templates.
+
+### Phase 2: Hybrid Nested Cross-Validation Splitting
+We use a custom data splitting strategy to dedicate specific data for hyperparameter tuning while maintaining independent test sets:
+* **The Outer Loop (Model Evaluation):** The full dataset is split into **6 independent Outer Folds** (holding out ~16% for testing per fold) using Stratified K-Fold to maintain class balance.
+* **The Inner Loop (Training & Tuning):** * **Outer Fold 1:** Generates 3 distinct inner folds (holding out 8% for validation) specifically for Hyperparameter Sweeping.
+  * **Outer Folds 2-6:** Generates exactly 1 inner fold (holding out 8% for validation) for final production training.
 
 ## Optimizations
 
-- Implemented stratified 5-fold cross-validation to handle severe class imbalance
-- Added early stopping with 55-epoch patience to prevent overfitting
-- Used weighted loss functions proportional to class frequencies
-- Optimized graph construction with 7 edge types for rich structural representation
-- Achieved ~70% overall accuracy with F1 scores up to 0.95 for distinct membrane classes
-- Developed confidence-based filtering to identify low-quality predictions
-
-
+- **Structural Redundancy Filtering:** Integrated Foldseek to cluster and remove structurally duplicate PDBs, ensuring robust model evaluation.
+- **Hybrid 6-Fold Nested Cross-Validation:** Replaced standard 5-fold CV with a nested approach to isolate hyperparameter tuning from final testing.
+- Added early stopping with 55-epoch patience to prevent overfitting.
+- Used weighted loss functions proportional to class frequencies to combat severe class imbalance.
+- Optimized graph construction with 7 edge types for rich structural representation.
+- Achieved ~60% overall accuracy with F1 scores up to 0.65 for distinct membrane classes.
+- Developed confidence-based filtering to identify low-quality predictions.
 
 ## Installation
 
 ### Prerequisites
 - Conda (Miniconda or Anaconda)
 - NVIDIA GPU with CUDA 12.1 (recommended)
+- Foldseek (for data preprocessing)
 
 ### Quick Installation
-``` bash
-git clone https://github.com/bivekpok/gearnet_nodupes
+```bash
+git clone [https://github.com/bivekpok/gearnet_nodupes](https://github.com/bivekpok/gearnet_nodupes)
 cd gearnet_nodupes
 conda env create -f environment.yml  # Creates 'gearnet' environment
 conda activate gearnet
-```
 
 
 ## ⚡️ Usage
