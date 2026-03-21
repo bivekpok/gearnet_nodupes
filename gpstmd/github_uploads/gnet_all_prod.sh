@@ -1,9 +1,9 @@
 #!/bin/bash
 #SBATCH --job-name="gnet_production_cv"
-#SBATCH --output="/work/hdd/bdja/bpokhrel/new_gearnet/foldseek_train/whole_test_cover/logs/production_v2.%j.%N.out"
-#SBATCH --error="/work/hdd/bdja/bpokhrel/new_gearnet/foldseek_train/whole_test_cover/logs/production_v2.%j.%N.err"
+#SBATCH --output="logs/production_v2.%j.%N.out"
+#SBATCH --error="logs/production_v2.%j.%N.err"
 #SBATCH --partition=gpuA100x4
-#SBATCH --account=bdja-delta-gpu    
+#SBATCH --account=YOUR_ALLOCATION_HERE       # <--- USER: Update with your HPC allocation
 #SBATCH --mem=60G
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
@@ -11,7 +11,7 @@
 #SBATCH --gpus-per-node=1
 #SBATCH --gpus-per-task=1
 #SBATCH --gpu-bind=closest  
-#SBATCH --mail-user='bivekpok@udel.edu'
+#SBATCH --mail-user='YOUR_EMAIL@DOMAIN.COM'  # <--- USER: Update with your email
 #SBATCH --mail-type=BEGIN,END,FAIL,TIME_LIMIT
 #SBATCH -t 8:00:00
 
@@ -21,22 +21,29 @@ module purge
 # 2. Fix the NumExpr warning
 export NUMEXPR_MAX_THREADS=8
 
-# 3. Prevent W&B from filling up your limited home directory quota
+# 3. Prevent W&B from filling up limited home directory quota
 export WANDB_DIR=/tmp
 export WANDB_CACHE_DIR=/tmp
 
-# 4. Activate your environment
-source /u/bpokhrel/miniconda3/etc/profile.d/conda.sh
-conda activate /u/bpokhrel/gearnet
+# 4. Activate environment 
+# (Assumes the user has Conda initialized. If submitting via SLURM, 
+# it's best to 'conda activate gearnet' before running 'sbatch')
+conda activate gearnet
 
-# 5. Navigate to the working directory
-cd /work/hdd/bdja/bpokhrel/new_gearnet/foldseek_train/whole_test_cover
+# 5. Automatically navigate to the directory where the script was submitted
+cd "$SLURM_SUBMIT_DIR"
+
+# Ensure the log directory exists for SLURM output
+mkdir -p logs
 
 # --- PATH VARIABLES ---
-BASE_SPLIT_DIR="/work/hdd/bdja/bpokhrel/new_gearnet/foldseek_train/whole_test_cover/production_splitsv2"
-PDB_DIR="/work/hdd/bdja/bpokhrel/gearnet_files/pdb_m15_ac"
-SOLUBLE_DIR="/work/hdd/bdja/bpokhrel/gearnet_files/watersoluble_proteins_ac"
-OUTPUT_DIR="/work/hdd/bdja/bpokhrel/new_gearnet/foldseek_train/whole_test_cover/production_models_v2"
+# Base directories (Users should adjust DATA_DIR to where they downloaded the datasets)
+DATA_DIR="../gearnet_files" 
+BASE_SPLIT_DIR="./production_splitsv2"
+OUTPUT_DIR="./production_models_v2"
+
+PDB_DIR="${DATA_DIR}/pdb_m15_ac"
+SOLUBLE_DIR="${DATA_DIR}/watersoluble_proteins_ac"
 
 # Create directories for models and individual fold logs
 mkdir -p "${OUTPUT_DIR}/logs"
