@@ -57,24 +57,101 @@ conda activate gearnet
 
 ## ⚡️ Usage
 
-| Argument        | Description                               | Default   |
-|-----------------|-------------------------------------------|-----------|
-| `--pdb_folder`  | Path to membrane protein PDB files        | Required  |
-| `--soluble_folder` | Path to soluble protein PDB files      | Required  |
-| `--csv_path`    | Path to metadata CSV with localization labels | Required |
-| `--output_dir`  | Directory to save training results        | Required  |
-| `--num_epochs`  | Number of training epochs                 | 2500      |
-| `--batch_size`  | Training batch size                       | 32        |
-| `--learning_rate` | Initial learning rate                   | 1e-4      |
-| `--gpus`        | GPU IDs to use (comma-separated)          | 0         |
+## Dataset
 
+Splits and PDB structures are hosted on HuggingFace:
 
-python script.py \
+```
+https://huggingface.co/datasets/bivek77/protein-dataset
+```
+
+The dataset is organized as:
+
+```
+protein-dataset/
+├── splits/          # Nested CV manifest CSVs (train/valid/test per fold)
+│   ├── Outer_Fold_1/
+│   │   ├── test_manifest.csv
+│   │   ├── Inner_Fold_1/
+│   │   │   ├── train_manifest.csv
+│   │   │   └── valid_manifest.csv
+│   │   └── ...
+│   └── Outer_Fold_2/ ...
+└── pdbs/            # PDB structure files
+```
+
+To download the splits:
+
+```python
+from huggingface_hub import snapshot_download
+snapshot_download(repo_id="bivek77/protein-dataset", repo_type="dataset", local_dir="./data")
+```
+
+## Installation
+
+### Prerequisites
+- Conda (Miniconda or Anaconda)
+- NVIDIA GPU with CUDA 12.1 (recommended)
+
+### Quick Installation
+
+```bash
+git clone https://github.com/bivekpok/gearnet_nodupes
+cd gearnet_nodupes
+conda env create -f environment.yml  # Creates 'gearnet' environment
+conda activate gearnet
+```
+
+## Usage
+
+### Arguments
+
+| Argument | Description | Default |
+|---|---|---|
+| `--pdb_folder` | Path to membrane protein PDB files | Required |
+| `--soluble_folder_ac` | Path to soluble protein PDB files | Required |
+| `--split_dir` | Path to the Inner Fold directory (e.g., `splits/Outer_Fold_1/Inner_Fold_1`) | Required |
+| `--output_dir` | Directory to save training results | Required |
+| `--num_epochs` | Number of training epochs | 2500 |
+| `--batch_size` | Training batch size | 32 |
+| `--learning_rate` | Initial learning rate | 1e-3 |
+| `--hidden_dim` | Hidden dimension size | 512 |
+| `--num_gearnet_layers` | Number of GearNet layers | 3 |
+| `--mlp_dropout` | MLP dropout rate | 0.2 |
+| `--weight_decay` | AdamW weight decay | 1e-5 |
+| `--readout` | Graph readout function (`sum`, `mean`) | `sum` |
+| `--concat_hidden` | Concatenate hidden layers | `True` |
+| `--knn_k` | K for KNN edge construction | 10 |
+| `--spatial_radius` | Radius for spatial edges (Å) | 10.0 |
+| `--activation` | Activation function (`relu`, `silu`, `gelu`) | `relu` |
+| `--seed` | Random seed | 56 |
+
+### Example Run
+
+```bash
+python train_splits.py \
     --pdb_folder <path_to_membrane_proteins> \
-    --soluble_folder <path_to_soluble_proteins> \
-    --csv_path <path_to_metadata_csv> \
+    --soluble_folder_ac <path_to_soluble_proteins> \
+    --split_dir splits/Outer_Fold_1/Inner_Fold_1 \
     --output_dir <path_for_results> \
-    [--num_epochs 2500]
+    --learning_rate 0.00000394644981433921 \
+    --weight_decay 0.00008113944975079617 \
+    --mlp_dropout 0.2903210512935248 \
+    --readout "mean" \
+    --num_gearnet_layers 5 \
+    --batch_size 32 \
+    --hidden_dim 512 \
+    --concat_hidden "False" \
+    --knn_k 25 \
+    --spatial_radius 12.0 \
+    --num_epochs 2500 \
+    --seed 56 \
+    --activation "relu"
+```
+
+The script automatically resolves `train_manifest.csv` and `valid_manifest.csv` from `--split_dir`, and `test_manifest.csv` from the parent `Outer_Fold` directory.
+
+Training results and best model checkpoints are saved to `--output_dir` with fold-specific names (e.g., `Outer_Fold_1_Inner_Fold_1_best_model.pth`).
 
 
 ### 📚 Citation
