@@ -59,12 +59,11 @@ conda activate gearnet
 
 ## Dataset
 
-Splits and PDB structures are hosted on HuggingFace:
+## 💾 Dataset, Models & Logs
 
-```
-https://huggingface.co/datasets/bivek77/protein-dataset
-```
+The complete dataset, including PDB structures, trained model checkpoints, and training logs, is hosted on HuggingFace:
 
+[https://huggingface.co/datasets/bivek77/protein-dataset](https://huggingface.co/datasets/bivek77/protein-dataset)
 The dataset is organized as:
 
 ```
