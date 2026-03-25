@@ -80,7 +80,7 @@ protein-dataset/
 │   │   │   └── valid_manifest.csv
 │   │   └── ...
 │   └── Outer_Fold_2/
-└── pdbs/
+└── pdbs_m15_ac/
 ```
 
 To download the dataset snapshot:
