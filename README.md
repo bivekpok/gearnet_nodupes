@@ -123,7 +123,6 @@ cd gearnet_nodupes
 conda env create -f environment.yml
 conda activate gearnet
 
-pip install -e ./torchdrug
 ```
 
 ### Verify the local modified TorchDrug is being used
