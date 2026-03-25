@@ -51,6 +51,12 @@ SOLUBLE_DIR="$PDB_DIR"
 # and uncomment the line below:
 # SOLUBLE_DIR="${DATA_DIR}/watersoluble_proteins_ac"
 
+if [ ! -d "$PDB_DIR" ]; then
+    echo "ERROR: PDB folder not found at $PDB_DIR"
+    echo "Please set DATA_DIR correctly."
+    exit 1
+fi
+
 # Create directories for models and individual fold logs
 mkdir -p "${OUTPUT_DIR}/logs"
 
