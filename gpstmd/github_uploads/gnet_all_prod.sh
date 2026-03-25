@@ -44,7 +44,12 @@ BASE_SPLIT_DIR="./production_splitsv2"
 OUTPUT_DIR="./production_models_v2"
 
 PDB_DIR="${DATA_DIR}/pdb_m15_ac"
-SOLUBLE_DIR="${DATA_DIR}/watersoluble_proteins_ac"
+# DUMMY PATH FOR NOW: Point it directly to the PDB directory!
+SOLUBLE_DIR="$PDB_DIR" 
+
+# When you want to use soluble proteins later, just delete the line above
+# and uncomment the line below:
+# SOLUBLE_DIR="${DATA_DIR}/watersoluble_proteins_ac"
 
 # Create directories for models and individual fold logs
 mkdir -p "${OUTPUT_DIR}/logs"
