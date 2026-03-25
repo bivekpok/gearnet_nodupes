@@ -28,6 +28,7 @@ export WANDB_CACHE_DIR=/tmp
 # 4. Activate environment 
 # (Assumes the user has Conda initialized. If submitting via SLURM, 
 # it's best to 'conda activate gearnet' before running 'sbatch')
+eval "$(conda shell.bash hook)"
 conda activate gearnet
 
 # 5. Automatically navigate to the directory where the script was submitted
