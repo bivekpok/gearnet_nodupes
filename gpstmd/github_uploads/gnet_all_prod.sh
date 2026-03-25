@@ -39,7 +39,7 @@ mkdir -p logs
 
 # --- PATH VARIABLES ---
 # Base directories (Users should adjust DATA_DIR to where they downloaded the datasets)
-DATA_DIR="../gearnet_files" 
+DATA_DIR="/absolute/path/to/protein-dataset" 
 BASE_SPLIT_DIR="./production_splitsv2"
 OUTPUT_DIR="./production_models_v2"
 
