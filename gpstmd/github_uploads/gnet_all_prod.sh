@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --job-name="gnet_production_cv"
-#SBATCH --output="logs/production_v2.%j.%N.out"
-#SBATCH --error="logs/production_v2.%j.%N.err"
+#SBATCH --output="production_v2.%j.%N.out"
+#SBATCH --error="production_v2.%j.%N.err"
 #SBATCH --partition=gpuA100x4
 #SBATCH --account=YOUR_ALLOCATION_HERE       # <--- USER: Update with your HPC allocation
 #SBATCH --mem=60G
