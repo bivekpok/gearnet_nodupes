@@ -14,11 +14,13 @@ dependencies:
   - torchvision=0.17.2
   - torchaudio=2.2.2
   - pytorch-cuda=12.1
+  
 
   # Scientific computing
   - numpy=1.26.4
   - scipy=1.13.0
   - scikit-learn=1.4.0
+  - rdkit                     # replaces deprecated rdkit-pypi; installed from conda-forge
 
   # Data handling
   - pandas=2.2.1
@@ -33,7 +35,10 @@ dependencies:
 
   # Pip packages
   - pip:
-      - rdkit-pypi==2023.9.5
+  #     - decorator==5.1.1          # required by torchdrug/core/core.py and utils/decorator.py
+  #     - torch-scatter==2.1.2      # required by torchdrug data, models, and layers modules
+  #     - torch-cluster==1.6.3      # required by KNNEdge and SpatialEdge in torchdrug geometry layers
+  #     - huggingface_hub==0.21.4   # required for dataset download (snapshot_download in README)
       - biopython==1.83
       - wandb==0.16.3
       - "-e ./torchdrug"
