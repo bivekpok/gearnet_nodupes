@@ -97,41 +97,124 @@ snapshot_download(
 
 ## Installation
 
-### Important: use the bundled modified TorchDrug
+This project ships a **modified local fork of TorchDrug** in [`./torchdrug`](./torchdrug).
+You install that local fork, not upstream `torchdrug` from PyPI. It is installed
+as distribution `torchdrug-custom` but is still imported as `import torchdrug`.
 
-This repository includes a **modified local fork of TorchDrug** in [`./torchdrug`](./torchdrug).  
-For GPSforTMDs, install **this local version**, not the upstream TorchDrug package.
+Installation is done in **four steps** because two pieces of the PyTorch
+ecosystem (`torch-scatter`, `torch-cluster`) need OS-specific handling to avoid
+the C++ ABI `Symbol not found: __ZN3c1017RegisterOperatorsD1Ev` error on macOS.
 
-If you previously installed another TorchDrug version, remove it first:
+### Prerequisites
+
+- Conda (Miniconda or Anaconda)
+- Linux / Windows: NVIDIA GPU with CUDA 12.1 for GPU training (CPU works too)
+- macOS: works CPU-only on Apple Silicon and Intel
+- A C/C++ toolchain (for source-compiling `torch-scatter` / `torch-cluster` on macOS):
+  - macOS: `xcode-select --install`
+  - Linux: `build-essential` (or your distro's equivalent)
+
+If any previous TorchDrug is installed globally, remove it first so imports
+don't shadow the bundled one:
 
 ```bash
 pip uninstall -y torchdrug torchdrug-custom
 ```
 
-### Prerequisites
-
-- Conda (Miniconda or Anaconda)
-- NVIDIA GPU with CUDA 12.1 recommended
-- Foldseek for preprocessing and redundancy filtering
-
-### Quick Installation
+### Step 1 — Clone the repo
 
 ```bash
 git clone https://github.com/bivekpok/gearnet_nodupes
 cd gearnet_nodupes
-
-conda env create -f environment.yml
-conda activate gearnet
-
 ```
 
-### Verify the local modified TorchDrug is being used
+### Step 2 — Create the Conda environment
+
+**Linux / Windows (CUDA 12.1):**
 
 ```bash
-python -c "import torchdrug; print(torchdrug.__file__)"
+conda env create -f environment.yml
+conda activate gearnet
 ```
 
-The printed path should point to this repository's local `torchdrug/` directory rather than an unrelated site-packages installation.
+**macOS (Apple Silicon or Intel):**
+
+`pytorch-cuda=12.1` does not exist on macOS, so drop that one line before
+creating the env:
+
+```bash
+# macOS sed needs the empty '' arg; on Linux use `sed -i '/pytorch-cuda/d' environment.yml`
+sed -i '' '/pytorch-cuda/d' environment.yml
+conda env create -f environment.yml
+conda activate gearnet
+```
+
+### Step 3 — Install `torch-scatter` and `torch-cluster` (OS-specific)
+
+These two packages contain C++ extensions that must match the exact PyTorch
+build installed above. Pick the command block for your OS.
+
+**Linux / Windows — use the PyG pre-built wheel index (fast, no compile):**
+
+```bash
+pip install torch-scatter==2.1.2 torch-cluster==1.6.3 \
+    -f https://data.pyg.org/whl/torch-2.2.2+cu121.html
+```
+
+For a **CPU-only** Linux/Windows install, use `+cpu` instead:
+
+```bash
+pip install torch-scatter==2.1.2 torch-cluster==1.6.3 \
+    -f https://data.pyg.org/whl/torch-2.2.2+cpu.html
+```
+
+**macOS — compile from source against the installed torch:**
+
+The PyG wheel index does not publish macOS wheels. Pre-built wheels from PyPI
+are built against a different torch and will fail at import with
+`Symbol not found: __ZN3c1017RegisterOperatorsD1Ev`. The reliable fix is to
+build locally with `--no-build-isolation`, which forces the build to use the
+torch already in this env instead of pulling a fresh one into a sandbox:
+
+```bash
+pip uninstall -y torch-scatter torch-cluster   # in case a bad wheel is cached
+pip install --no-build-isolation --no-cache-dir \
+    torch-scatter==2.1.2 \
+    torch-cluster==1.6.3
+```
+
+If the compile fails on macOS, set the SDK target and retry:
+
+```bash
+export MACOSX_DEPLOYMENT_TARGET=11.0
+export CC=clang
+export CXX=clang++
+pip install --no-build-isolation --no-cache-dir \
+    torch-scatter==2.1.2 torch-cluster==1.6.3
+```
+
+### Step 4 — Install the bundled modified TorchDrug
+
+Do this **last**, so its build sees the correct `torch` + `torch-scatter` +
+`torch-cluster` already in the env:
+
+```bash
+pip install -e ./torchdrug
+```
+
+### Verify the installation
+
+```bash
+python -c "import torch, torch_scatter, torch_cluster; \
+print('torch', torch.__version__, '| scatter', torch_scatter.__version__, '| cluster', torch_cluster.__version__)"
+
+python -c "import torchdrug; print('TorchDrug', torchdrug.__version__, 'from', torchdrug.__file__)"
+```
+
+The second line must print a path inside **this repository's** `torchdrug/`
+directory (e.g. `.../gearnet_nodupes/torchdrug/torchdrug/__init__.py`), not
+anything under `site-packages/`. That confirms the editable install of the
+local fork is in use.
 
 ## Usage
 
