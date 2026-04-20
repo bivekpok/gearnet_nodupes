@@ -1,0 +1,22 @@
+{
+    "num_classes": 9,
+    "hidden_dim": 512,
+    "num_gearnet_layers": 5,
+    "mlp_dropout": 0.2903210512935248,
+    "readout": "mean",
+    "concat_hidden": false,
+    "knn_k": 25,
+    "spatial_radius": 12.0,
+    "activation": "relu",
+    "label_names": [
+        "Archaebac.",
+        "Endoplasm. reticulum",
+        "Eukaryo. plasma",
+        "Gram-neg. inner",
+        "Gram-neg. outer",
+        "Gram-pos. inner",
+        "Mitochon. inner",
+        "Mitochon. outer",
+        "Thylakoid"
+    ]
+}

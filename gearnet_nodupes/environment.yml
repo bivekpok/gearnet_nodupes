@@ -1,0 +1,78 @@
+# GPSforTMDs / GearNet — Conda environment
+#
+# This file installs everything that works portably via conda + pip.
+# Two things are intentionally LEFT OUT of this file and handled in README.md,
+# because they need to match your OS and your installed PyTorch ABI:
+#
+#   1. torch-scatter / torch-cluster
+#      - Linux / Windows: install from the PyG wheel index.
+#      - macOS: build from source with --no-build-isolation.
+#
+#   2. The bundled modified TorchDrug (./torchdrug)
+#      - Installed last with `pip install -e ./torchdrug` so its build picks up
+#        the already-installed torch + torch-scatter + torch-cluster.
+#
+# macOS note:
+#   The `pytorch-cuda=12.1` pin below is only meaningful on Linux / Windows
+#   machines with a CUDA GPU. On macOS (Apple Silicon or Intel), either
+#   remove that one line before running `conda env create`, or use the
+#   one-liner in README.md.
+
+name: gearnet
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+  - defaults
+
+dependencies:
+  # Core Python
+  - python=3.10.13
+  - pip=23.3.1
+
+  # PyTorch ecosystem
+  - pytorch=2.2.2
+  - torchvision=0.17.2
+  - torchaudio=2.2.2
+  - pytorch-cuda=12.1          # Linux / Windows CUDA only — delete on macOS
+
+  # Scientific computing
+  - numpy=1.26.4
+  - scipy=1.13.0
+  - scikit-learn=1.4.0
+  - pandas=2.2.1
+  - networkx=3.2.1
+  - matplotlib=3.8.3
+
+  # RDKit — pinned because newer versions removed rdkit.Chem.Draw.mplCanvas,
+  # which torchdrug.data.rdkit.draw imports at module load time.
+  - rdkit=2022.03.5
+
+  # Utilities
+  - tqdm=4.66.2
+  - jupyter=1.0.0
+
+  # Pip-only dependencies
+  - pip:
+      - biopython==1.83
+      - wandb==0.16.3
+      - decorator==5.1.1
+      - huggingface_hub==0.21.4
+      - lmdb
+      - ninja
+      - easydict
+      - jinja2
+      - pyyaml
+      # Streamlit demo app (web_demo_test/app.py): UI + 3D protein viewer.
+      - streamlit
+      - py3Dmol
+      - stmol
+      # stmol imports ipywidgets → which on modern Jupyter stacks no longer
+      # pulls ipython_genutils transitively. Without it, stmol raises
+      # ModuleNotFoundError: No module named 'ipython_genutils'.
+      - ipython_genutils
+      # fair-esm is optional: only needed if you use torchdrug.models.EvolutionaryScaleModeling.
+      # GearNet does not require it. See README.md.
+      # Intentionally NOT listed here (see README.md "Installation"):
+      #   - torch-scatter / torch-cluster  (OS-specific install)
+      #   - -e ./torchdrug                 (installed after the two above)

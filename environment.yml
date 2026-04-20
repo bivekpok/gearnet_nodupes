@@ -1,0 +1,26 @@
+name: gearnet_local
+channels:
+  - pytorch
+  - conda-forge
+  - defaults
+
+dependencies:
+  - python=3.10.13
+  - pip=23.3.1
+  - pytorch=2.2.2
+  - torchvision=0.17.2
+  - torchaudio=2.2.2
+  - numpy=1.26.4
+  - scipy=1.13.0
+  - scikit-learn=1.4.0
+  - rdkit
+  - pandas=2.2.1
+  - networkx=3.2.1
+  - matplotlib=3.8.3
+  - tqdm=4.66.2
+  - jupyter=1.0.0
+  - pip:
+      - biopython==1.83
+      - wandb==0.16.3
+      - streamlit>=1.30
+      - "-e ./torchdrug"

@@ -1,0 +1,20 @@
+# Streamlit UI
+streamlit>=1.30
+
+# Core ML
+torch>=1.13,<2.4
+numpy<2
+pandas
+scikit-learn
+ninja
+
+# TorchDrug dependencies (installed explicitly so HF Spaces picks compatible wheels)
+networkx
+rdkit
+decorator
+tqdm
+matplotlib
+pyyaml
+
+# Custom TorchDrug fork (provides the GearNet modules + C++ extensions used by the checkpoint)
+git+https://github.com/bivekpok/gearnet_nodupes.git#egg=torchdrug&subdirectory=torchdrug

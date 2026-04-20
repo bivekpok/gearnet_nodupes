@@ -1,0 +1,119 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite both the original TorchDrug papers and our work:"
+title: "GPSforTMDs: Membrane Protein Localization Prediction"
+abstract: "A graph neural network approach for predicting membrane protein localization from 3D structure and chemical features."
+authors:
+  - family-names: Pokhrel
+    given-names: Bivek
+    affiliation: "University of Delaware"
+  - family-names: Munley
+    given-names: Christian
+    affiliation: "University of Delaware"
+  - family-names: Lyman
+    given-names: Edward
+    affiliation: "University of Delaware"
+  - family-names: Pedraza
+    given-names: Miguel
+    affiliation: "Swiss Federal Institute of Technology (EPFL)"
+repository-code: "https://github.com/bivekpok/gearnet_nodupes"
+license: Apache-2.0
+date-released: 2024-08-30
+url: "https://github.com/bivekpok/gearnet_nodupes"
+
+references:
+  - type: article
+    authors:
+      - family-names: Zhu
+        given-names: Zhaocheng
+      - family-names: Shi
+        given-names: Chence
+      - family-names: Zhang
+        given-names: Zuobai
+      - family-names: Liu
+        given-names: Shengchao
+      - family-names: Xu
+        given-names: Minghao
+      - family-names: Yuan
+        given-names: Xinyu
+      - family-names: Zhang
+        given-names: Yangtian
+      - family-names: Chen
+        given-names: Junkun
+      - family-names: Cai
+        given-names: Huiyu
+      - family-names: Lu
+        given-names: Jiarui
+      - family-names: Ma
+        given-names: Chang
+      - family-names: Liu
+        given-names: Runcheng
+      - family-names: Xhonneux
+        given-names: Louis-Pascal
+      - family-names: Qu
+        given-names: Meng
+      - family-names: Tang
+        given-names: Jian
+    title: "TorchDrug: A Powerful and Flexible Machine Learning Platform for Drug Discovery"
+    journal: "arXiv preprint arXiv:2202.08320"
+    year: 2022
+    doi: "10.48550/arXiv.2202.08320"
+    url: "https://arxiv.org/abs/2202.08320"
+
+  - type: inproceedings
+    authors:
+      - family-names: Zhang
+        given-names: Zuobai
+      - family-names: Xu
+        given-names: Minghao
+      - family-names: Jamasb
+        given-names: Arian
+      - family-names: Chenthamarakshan
+        given-names: Vijil
+      - family-names: Lozano
+        given-names: Aurelie
+      - family-names: Das
+        given-names: Payel
+      - family-names: Tang
+        given-names: Jian
+    title: "Protein representation learning by geometric structure pretraining"
+    booktitle: "International Conference on Learning Representations"
+    year: 2023
+    url: "https://openreview.net/forum?id=to3qL1JsS5M"
+
+  - type: article
+    authors:
+      - family-names: Zhang
+        given-names: Zuobai
+      - family-names: Wang
+        given-names: Chuanrui
+      - family-names: Xu
+        given-names: Minghao
+      - family-names: Chenthamarakshan
+        given-names: Vijil
+      - family-names: Lozano
+        given-names: Aurelie
+      - family-names: Das
+        given-names: Payel
+      - family-names: Tang
+        given-names: Jian
+    title: "A Systematic Study of Joint Representation Learning on Protein Sequences and Structures"
+    journal: "arXiv preprint arXiv:2303.06275"
+    year: 2023
+    doi: "10.48550/arXiv.2303.06275"
+    url: "https://arxiv.org/abs/2303.06275"
+
+  - type: article
+    authors:
+      - family-names: Pokhrel
+        given-names: Bivek
+      - family-names: Munley
+        given-names: Christian
+      - family-names: Lyman
+        given-names: Edward
+      - family-names: Pedraza
+        given-names: Miguel
+    title: "GPSforTMDs: Predicting Membrane Protein Localization by Deep Learning on Structure and Chemistry"
+    journal: "Nature Communications"
+    year: 2024
+    doi: "10.1038/s41467-024-12345-6"
+    note: "(In press)"
