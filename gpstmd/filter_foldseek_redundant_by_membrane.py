@@ -9,7 +9,7 @@ Logic (same as Colab notebook):
 4. Members that share the same membrane label as their representative are
    treated as redundant; those member PDB IDs are discarded from the dataset.
 
-Example (paths like your Drive layout):
+Example:
   python filter_foldseek_redundant_by_membrane.py \\
     --clusters-tsv foldseek/s03tm03_clusters_cluster.tsv \\
     --dataset-csv final_pdb_csv2.csv \\
